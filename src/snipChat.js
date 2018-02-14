@@ -45,7 +45,7 @@
                         <input class="chat-send-msg" placeholder="> Type in chat message!">
                         <select class="language"></select>
                         <button class="send-code">Send Code</button>
-                        <button class="dropBox"><i class="fab fa-stack-overflow"></i> Drag file here</button>
+                        <button class="dropBox"><i class="fas fa-cloud-upload-alt">🖫</i> Drag file here</button>
                         <div class="code-view" style="min-width: 200px; height: 300px; "></div>
                     </div>
                 </div>`
@@ -238,7 +238,7 @@
                 let user = conn.peer;
                 let template =
                     `<a href="${url}" download="${fileMeta.name}">
-                            <i class="fab fa-stack-overflow">🖫</i>
+                            <i class="fas fa-cloud-download-alt">🖫</i>
                             <span>File</span>
                             <ul>
                                 <li>Name: <span class="name">${fileMeta.name}</span></li>
