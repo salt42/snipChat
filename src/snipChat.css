@@ -1,6 +1,9 @@
+/*region general*/
 #chatBox {
     --color: #27ffe6;
+    --color-high: #ff00ee;
     --color-use: #8bff87;
+    --color-response: #8bff87;
     --colorRGB: 255, 0, 153;
     --color-instruct: rgba(var(--colorRGB), 0.3);
     --bg-color-1: #272822;
@@ -9,8 +12,13 @@
     background: var(--bg-color-1);
     color: var(--color);
     padding: 5px;
-    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
+
 #chatBox .box {
     box-sizing: border-box;
     border: var(--border);
@@ -18,6 +26,21 @@
     padding: 0px;
     overflow: hidden;
 }
+/*endregion*/
+
+/*region flex*/
+#chatBox .flex {
+    display: flex;
+}
+#chatBox.flex-vert,
+#chatBox .flex-vert {
+    display: flex;
+    flex-direction: column;
+}
+
+/*endregion*/
+
+/*region inputs*/
 #chatBox input,
 #chatBox select,
 #chatBox button {
@@ -26,33 +49,141 @@
     border: 0px;
     padding: 8px;
 }
+
 #chatBox input.color {
     padding: 5px;
     height: 22px;
     width: 20px;
     vertical-align: bottom;
 }
+
 #chatBox button {
-    height: 100%;
+    position: relative;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+}
+#chatBox button:hover {
+    color: var(--color-response);
+}
+
+#chatBox button i:hover {
+    color: var(--color-response);
 }
 ::-webkit-input-placeholder {
     color: var(--color-instruct);
 }
-#chatBox .msg-box {
-    border-right: var(--border);
-    list-style: none;
-    padding: 0;
+
+/*endregion*/
+
+/*region flex layout*/
+#chatBox > div > .functions {
+    margin: 5px 5px 10px 5px;
+    width: 40px;
+}
+
+#chatBox > .connection {
+    flex-shrink: 0;
+}
+
+#chatBox > .messages {
+    display: flex;
+    flex-shrink: 0;
+    flex-grow: 0;
+    position: relative;
+    width: 100%;
+    min-height: 200px;
+    padding-bottom: 5px;
+    overflow: hidden;
+    max-height: 50%;
+}
+
+#chatBox > .messages .file-widget-view {
+    width: 100%;
+}
+
+#chatBox > div > .send {
+    /*min-height: 200px;*/
+    width: 100%;
+    flex-grow: 1;
+}
+#chatBox > .bottom.flex {
+    flex-grow: 1;
+}
+/*endregion*/
+
+/*region scroll bars*/
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-button {
+    /*background-color: var(--color);*/
+    border: var(--border);
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    height: 50px;
+    border: var(--border);
+    border-color: var(--color);
+    border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+    border-color: var(--color-use);
+ }
+::-webkit-scrollbar-corner {
+    background-color: #999;
+}
+
+::-webkit-resizer {
+    background-color: #660002;
+}
+
+/*endregion*/
+
+/*region side functions */
+#chatBox > div > .functions {
+    border-right: 0;
     overflow-y: scroll;
 }
-#chatBox .msg-box li{
+#chatBox > div > .functions > button {
+    width: 100%;
+    height: 38px;
+    color: var(--color) !important;
+    font-size: 25px !important;
+}
+
+/*endregion*/
+
+/*region msg box */
+#chatBox>.messages>.msg-box {
+    border-right: 0;
+    /*max-height: 100%;*/
+    min-width: 300px;
+    resize: horizontal;
+    overflow-y: scroll;
+}
+
+#chatBox .msg-box li {
     word-wrap: break-word;
 }
+
 #chatBox .msg-box .inline-widget {
     display: inline-block;
     background: var(--bg-color-2);
     cursor: pointer;
     width: 100%;
 }
+
 #chatBox .msg-box .inline-widget[name="file"] {
     background: var(--bg-color-2);
     box-sizing: border-box;
@@ -64,11 +195,15 @@
     font-size: 26px;
     padding: 5px;
 }
+
 #chatBox .msg-box .inline-widget[name="file"] a {
-    color: #ff0099;
+    color: var(--color-high);
     text-decoration: none;
 }
-#chatBox .msg-box .inline-widget[name="file"] i {}
+
+#chatBox .msg-box .inline-widget[name="file"] i {
+}
+
 #chatBox .msg-box .inline-widget[name="file"] ul {
     float: right;
     display: inline-block;
@@ -79,42 +214,47 @@
     font-weight: bold;
     width: 60%;
 }
+
 #chatBox .msg-box .inline-widget[name="file"] ul li span {
     font-weight: normal;
     float: right;
 }
+
 #chatBox .msg-box .inline-widget[name="file"] .source {}
+
 #chatBox .msg-box .inline-widget[name="file"] .size {}
+
 #chatBox .msg-box .inline-widget[name="file"] .name {}
+/*endregion*/
+
+/*region peer list*/
+#chatBox > .bottom.flex > .peer-list {
+    border-right: 0;
+    overflow-y: scroll;
+    min-width: 150px;
+}
+
+/*endregion*/
+
+/*region send box*/
 #chatBox .dropBox {
     float: right;
     box-sizing: border-box;
 }
+
 #chatBox .dropBox.hover {
     box-sizing: border-box;
     border: var(--border);
 }
-#chatBox i {
-    font-style: normal;
+
+/*endregion*/
+
+/*region ripple effect */
+#chatBox .ripple {
+    overflow: hidden;
 }
 
-
-
-#chatBox button{
-    position: relative;
-    border: none;
-    outline:none;
-    cursor: pointer;
-    overflow:hidden;
-    /*color: white;*/
-    /*padding: 18px 60px;*/
-    /*border-radius: 2px;*/
-    /*font-size: 22px;*/
-}
-#chatBox .ripple{
-    overflow:hidden;
-}
-#chatBox .ripple-effect{
+#chatBox .ripple-effect {
     position: absolute;
     border-radius: 50%;
     width: 50px;
@@ -122,6 +262,9 @@
     background: var(--color-use);
     animation: ripple-animation 2s;
 }
+
+
+
 @keyframes ripple-animation {
     from {
         transform: scale(1);
@@ -132,19 +275,36 @@
         opacity: 0;
     }
 }
+
+/*endregion*/
+
+/************ WIDGETS ************/
+
+/*region widget call*/
 #chatBox svg {
     height: 30px;
     width: 70px;
 }
-path{
+
+path {
     stroke-linecap: square;
     stroke: white;
     stroke-width: 0.5px;
 }
+
 .answer-call {
     color: green;
 }
+
 .reject-call {
     padding-left: 5px;
     color: red;
 }
+/*endregion*/
+
+/*region widget code*/
+.widget-code-view {
+    width: 100%;
+    height: 100%;
+}
+/*endregion*/

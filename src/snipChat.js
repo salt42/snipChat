@@ -1,7 +1,5 @@
-
 (function() {
-    let html = `<div id="chatBox">
-                    <audio class="audio-out"></audio>
+    let html = `<div id="chatBox" class="flex-vert">
                     <div class="connection box" style="">
                         <input class="nickname" value="" placeholder="> YOUR NAME">
                         <button class="peer-id" data-ripple-color="#89669b" >Start p2p System</button>
@@ -37,19 +35,35 @@
                             <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient)" mask="url(#mask)"></rect>
                         </svg>
                     </div>
-                    <div class="messages box" style="position: relative; display:flex; flex-wrap: wrap; height: 300px; width: 100%; overflow: hidden; padding-bottom: 5px">
-                        <ul class="msg-box" style="width: 300px; flex-grow: 0; margin: 0px;"></ul>
-                        <div class="received-code-view" style="min-width: 200px; height: 100%; flex-grow: 5;overflow: hidden;"></div>
+                    <div class="messages">
+                        <ul class="msg-box box"></ul>
+                        <div class="file-widget-view box"></div>
                     </div>
-                    <div class="send box" style="">
-                        <input class="chat-send-msg" placeholder="> Type in chat message!">
-                        <select class="language"></select>
-                        <button class="send-code">Send Code</button>
-                        <button class="dropBox"><i class="fas fa-cloud-upload-alt">🖫</i> Drag file here</button>
-                        <div class="code-view" style="min-width: 200px; height: 300px; "></div>
+                    <div class="bottom flex">
+                        <div class="functions box">
+                            <button><i class="fa fa-blind"></i></button>
+                            <button><i class="fa fa-bell-slash"></i></button>
+                            <button><i class="fa fa-bell"></i></button>
+                            <button><i class="fa fa-blind"></i></button>
+                            <button><i class="fa fa-blind"></i></button>
+                            <button><i class="fa fa-blind"></i></button>
+                            <button><i class="fa fa-blind"></i></button>
+                            <button><i class="fa fa-blind"></i></button>
+                        </div>
+                        <div class="send box">
+                            <input class="chat-send-msg" placeholder="> Type in chat message!">
+                            <select class="language"></select>
+                            <button class="send-code">Send Code</button>
+                            <button class="dropBox"><i class="fas fa-cloud-upload-alt"></i> Drag file here</button>
+                            <div class="code-view" style="min-width: 200px; height: 90px;"></div>
+                        </div>
+                        <div class="peer-list box"> 
+                            <h2>Peers</h2>
+                        </div>
                     </div>
-                </div>`
+                </div>`;
     $(document.body).append(html);
+
     let G = {
             chat: {},
             audio: {}
@@ -58,12 +72,12 @@
         peerID,
         peerNick = "",
         $chatBox = $("#chatBox"),
-        $audioOut = $("#chatBox .audio-out"),
         $id = $("#chatBox .peer-id"),
         $nickname = $("#chatBox .nickname"),
         $target = $("#chatBox .target-peer-id"),
         $connect = $("#chatBox .connect"),
         $msgBox = $("#chatBox .msg-box"),
+        $fileWidgetView = $("#chatBox .file-widget-view"),
         $input = $("#chatBox .chat-send-msg"),
         $dropBox = $("#chatBox .dropBox"),
         $sendCode = $("#chatBox .send-code"),
@@ -72,7 +86,6 @@
         $codeView,
         $receivedCodeView,
         codeViewFlask,
-        receivedCodeViewFlask,
         connectedChatPeers = {},
         connectedFilePeers = {},
         peers = {},
@@ -92,6 +105,8 @@
             reliable: true,
             metadata: {}
         };
+
+    /*region p2p handling */
     function addPeer(peerID, nickname, color) {
         if (!peers.hasOwnProperty(peerID)) {
             peers[peerID] = {
@@ -289,6 +304,38 @@
             });
         });
     }
+    // DEPRECATED USE BROADCAST INSTEAD! Goes through each active peer and calls FN on its connections.
+    function eachActiveChatConnection(fn) {
+        for (let peerID in connectedChatPeers) {
+            if (connectedChatPeers.hasOwnProperty(peerID)) {
+                fn(connectedChatPeers[peerID], connectedFilePeers[peerID]);
+            }
+        }
+    }
+    function broadcast(fn) {
+        for (let peerID in connectedChatPeers) {
+            if (connectedChatPeers.hasOwnProperty(peerID)) {
+                fn(connectedChatPeers[peerID], connectedFilePeers[peerID]);
+            }
+        }
+    }
+    /*endregion*/
+
+    /*region chat */
+    function write(sender, text) {
+        $msgBox.prepend('<li><span class="' + sender + '">[' + sender + '] </span>' + text + '</li>');
+    }
+    function error(msg) {
+        $msgBox.prepend('<li><span class="error">[ERROR] </span>' + msg + '</li>');
+    }
+    function writeWidget(name, html) {
+        let $element = $( `<li class="inline-widget" name="${name}">` + html + '</li>');
+        $msgBox.prepend($element);
+        return $element;
+    }
+    /*endregion*/
+
+    /*region utils */
     function humanFileSize(bytes, si) {
         var thresh = si ? 1000 : 1024;
         if(Math.abs(bytes) < thresh) {
@@ -304,18 +351,16 @@
         } while(Math.abs(bytes) >= thresh && u < units.length - 1);
         return bytes.toFixed(1)+' '+units[u];
     }
-    //chat
-    function write(sender, text) {
-        $msgBox.prepend('<li><span class="' + sender + '">[' + sender + '] </span>' + text + '</li>');
+    function hexToRgb(hex) {
+        let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+        } : null;
     }
-    function error(msg) {
-        $msgBox.prepend('<li><span class="error">[ERROR] </span>' + msg + '</li>');
-    }
-    function writeWidget(name, html) {
-        let $element = $( `<li class="inline-widget" name="${name}">` + html + '</li>');
-        $msgBox.prepend($element);
-        return $element;
-    }
+    /*endregion*/
+
     function closeAll() {
         eachActiveConnection(function(c) {
             c.close();
@@ -388,29 +433,6 @@
         }
         commands[com].run.apply(null, args.slice(1));
     }
-    function broadcast(fn) {
-        for (let peerID in connectedChatPeers) {
-            if (connectedChatPeers.hasOwnProperty(peerID)) {
-                fn(connectedChatPeers[peerID], connectedFilePeers[peerID]);
-            }
-        }
-    }
-    // DEPRECATED USE BROADCAST INSTEAD! Goes through each active peer and calls FN on its connections.
-    function eachActiveChatConnection(fn) {
-        for (let peerID in connectedChatPeers) {
-            if (connectedChatPeers.hasOwnProperty(peerID)) {
-                fn(connectedChatPeers[peerID], connectedFilePeers[peerID]);
-            }
-        }
-    }
-    function hexToRgb(hex) {
-        let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-        return result ? {
-            r: parseInt(result[1], 16),
-            g: parseInt(result[2], 16),
-            b: parseInt(result[3], 16)
-        } : null;
-    }
     function setColor(hexCode) {
         localStorage.setItem("lastColor", hexCode);
         let rgb = hexToRgb(hexCode);
@@ -420,8 +442,7 @@
     }
     function showCode(data) {
         // $receivedCodeView.val(data.code);
-        receivedCodeViewFlask.run(".received-code-view", { language: data.language});
-        receivedCodeViewFlask.update(data.code);
+        openFileWidget("code", data.language, data.code);
     }
     G.audio.connect = function(stream) {
         // let captureStream = $audioOut[0].captureStream(stream);
@@ -436,12 +457,26 @@
         // outputMediaStream = new MediaStream(outputTracks);
     };
 
-    //widgets
-    let widgets = [];
+    /*region widget handling */
+    let widgets = {};
     let commands = {};
     let fileTypes = new Map();
-    function Widget(fn) {
-        let widget = {};
+    let openWidget = null;
+
+    class BaseWidget {
+        constructor(id) {
+            this.id = id;
+        }
+        closeView() {
+            openWidget = null;
+        }
+        openView() {
+            openWidget = this.id;
+        }
+    }
+    function Widget(id, fn) {
+        if (widgets.hasOwnProperty(id)) throw new Error("widget id already taken!");
+        let widget = new BaseWidget();
         fn.call(widget, G);
         if (widget.hasOwnProperty("command") ) {
             if (commands.hasOwnProperty(widget.command)) throw new Error("Command '" + widget.command + "' exists already!");
@@ -451,7 +486,7 @@
             if (fileTypes.has(widget.fileType)) throw new Error("FileType '" + widget.fileType + "' exists already!");
             fileTypes[widget.fileType] = widget;
         }
-        widgets.push(widget);
+        widgets[id] = widget;
     }
     function fireEvent(name, ...args) {
         for (let widget in widgets) {
@@ -461,6 +496,23 @@
             }
         }
     }
+    function openFileWidget(widgetID, ...args) {
+        if (!widgets.hasOwnProperty(widgetID)) throw new Error("widget with id '" + widgetID + "' not found!");
+        if (openWidget) widgets[openWidget].closeView();
+        $fileWidgetView.empty();
+        widgets[widgetID].openView($fileWidgetView, ...args);
+    }
+    function openFile(mimeType, blob) {
+        if (!mimeTypes.has(mimeType)) {
+
+        }
+        // widgets[widgetID].openView();
+        return true;
+    }
+    function canUseMIMEtype(mimeType) {
+        return true;
+    }
+    /*endregion*/
 
     G.peerToNick = peerToNick;
     G.nickToPeer = nickToPeer;
@@ -579,8 +631,6 @@
         $langSelect.val(lastLanguage);
         codeViewFlask = new CodeFlask();
         codeViewFlask.run(".code-view", { language: lastLanguage});
-        receivedCodeViewFlask = new CodeFlask();
-        receivedCodeViewFlask.run(".received-code-view", { language: 'js'});
 
         $codeView = $("#chatBox .code-view textarea");
         $receivedCodeView = $("#chatBox .received-code-view textarea");
@@ -620,8 +670,7 @@
         }, 2000);
     });
 
-
-    Widget(function(G) {
+    Widget("test", function(G) {
         let history = [];
         let oPush = history.push;
         history.push = (e) => {
@@ -636,7 +685,33 @@
                 .data("id", codeId);
         };
     });
-    Widget(function(G) {
+    Widget("code", function(G) {
+        let receivedCodeViewFlask;
+        let history = [];
+        let oPush = history.push;
+        history.push = (e) => {
+            return oPush.call(history, e)-1;
+        };
+        G.codeHistory = history;
+
+        this.openView = ($container, language, code) => {
+            // super.openView();
+        // <div class="received-code-view box" style="min-width: 200px; height: 100%; flex-grow: 5;overflow: hidden;"></div>
+            let id = "U" + (Math.round(Math.random()* 99999999999)).toString(16);
+            $container.append('<div id="'+ id +'" class="widget-code-view"></div>');
+            receivedCodeViewFlask = new CodeFlask();
+            // receivedCodeViewFlask.run(".received-code-view", { language: 'js'});
+            receivedCodeViewFlask.run("#" + id, { language: language});
+            receivedCodeViewFlask.update(code);
+        };
+        this.onCode = (data) => {
+            let codeId = G.codeHistory.push(data);
+            showCode(data);
+            writeWidget("code", `<span>CODE: ${data.language}</span>`)
+                .data("id", codeId);
+        };
+    });
+    Widget("call", function(G) {
         let constraints = { audio: true, video: false };
         this.command = "call";
         this.run = (target, msg) => {
@@ -645,7 +720,6 @@
                 console.log("nice")
             });
         };
-        this.fileType = "call/voice";
         this.openFile = (file) => {
 
         };
@@ -747,4 +821,21 @@
             doDraw();
         }
     });
+
+
+    (()=> {
+        for (let i = 0; i < 30; i++) {
+            write("test", "lorem ipsum est")
+        }
+
+        let target = "salt";
+        let peer = "dr.who";
+        let data = {language:"javascript"};
+
+        writeWidget("code", `<span>CODE: ${data.language}</span>`)
+        G.chat.writeWidget("call", `<span>CALLING ${target}</span>`);
+        G.chat.writeWidget("callIn", `<span>Incoming Call ${peer}</span><span class="fas fa-phone answer-call">ANSWER</span><span class="fas fa-phone reject-call">REJECT</span>`);
+
+        write("GOTT", "<span style='color: #ff00ee'>weils zum stylen einfacher ist kommen die 3 widgets gleich am anfang</span>>")
+    })();
 })();
