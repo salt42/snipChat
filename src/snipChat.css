@@ -9,6 +9,7 @@
     --bg-color-1: #272822;
     --bg-color-2: #454640;
     --border: 2px dashed var(--color-instruct);
+    --trans-cool-down: color 2s;
     background: var(--bg-color-1);
     color: var(--color);
     padding: 5px;
@@ -46,35 +47,43 @@
 #chatBox button {
     background: var(--bg-color-2);
     color: var(--color);
-    border: 0px;
+    border: none;
     padding: 8px;
+    transition: var(--trans-cool-down);
 }
-
+#chatBox button i:hover,
+#chatBox input:hover,
+#chatBox select:hover,
+#chatBox button:hover {
+    transition: color 0s;
+    color: var(--color-response);
+}
 #chatBox input.color {
     padding: 5px;
     height: 22px;
     width: 20px;
     vertical-align: bottom;
 }
-
+/* button */
 #chatBox button {
     position: relative;
-    border: none;
     outline: none;
     cursor: pointer;
     overflow: hidden;
 }
-#chatBox button:hover {
-    color: var(--color-response);
+#chatBox button i {
+    transition: var(--trans-cool-down);
 }
 
-#chatBox button i:hover {
-    color: var(--color-response);
-}
 ::-webkit-input-placeholder {
     color: var(--color-instruct);
 }
-
+/* select */
+#chatBox select {
+    padding: 7px;
+    background: var(--bg-color-2);
+    color: var(--color);
+}
 /*endregion*/
 
 /*region flex layout*/
