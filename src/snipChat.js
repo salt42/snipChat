@@ -831,11 +831,28 @@
         let target = "salt";
         let peer = "dr.who";
         let data = {language:"javascript"};
+        let url = "url";
+        let fileMeta = {
+            name: "filename.js",
+            size: 21345,
+        };
+        let user = "salt";
 
         writeWidget("code", `<span>CODE: ${data.language}</span>`)
         G.chat.writeWidget("call", `<span>CALLING ${target}</span>`);
         G.chat.writeWidget("callIn", `<span>Incoming Call ${peer}</span><span class="fas fa-phone answer-call">ANSWER</span><span class="fas fa-phone reject-call">REJECT</span>`);
+        let template =
+            `<a href="${url}" download="${fileMeta.name}">
+                            <i class="fas fa-cloud-download-alt">🖫</i>
+                            <span>File</span>
+                            <ul>
+                                <li>Name: <span class="name">${fileMeta.name}</span></li>
+                                <li>User: <span class="source">${user}</span></li>
+                                <li>Size: <span class="size">${humanFileSize(fileMeta.size, true)}</span></li>
+                            </ul>
+                    </a>`;
+        writeWidget("file", template);
 
-        write("GOTT", "<span style='color: #ff00ee'>weils zum stylen einfacher ist kommen die 3 widgets gleich am anfang</span>>")
+        write("DEV", "<span style='color: #ff00ee'>Style mich!</span>>")
     })();
 })();

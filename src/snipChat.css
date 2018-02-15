@@ -40,7 +40,13 @@
 }
 
 /*endregion*/
-
+#chatBox .color-cool-down {
+    transition: var(--trans-cool-down);
+}
+#chatBox .color-cool-down:hover {
+    transition: color 0s;
+    color: var(--color-response);
+}
 /*region inputs*/
 #chatBox input,
 #chatBox select,
