@@ -7,6 +7,8 @@
     --color-response: #8bff87; /* on user input */
     --colorRGB: 255, 0, 153; /*  */
     --color-instruct: rgba(var(--colorRGB), 0.3);
+    --color-border: var(--color-instruct);
+    --color-bing: #ff00ee;
     --bg-color-1: #272822;
     --bg-color-2: #454640;
     --border: 2px dashed var(--color-instruct);
@@ -27,12 +29,40 @@
     margin: 5px 5px 10px 5px;
     padding: 0px;
     /*overflow: hidden;*/
-    transition: border-color 1s;
+    transition: border-color 2s;
+}
+@keyframes bing-animation {
+    0% {
+        border-color: var(--color-instruct);
+    }
+    50% {
+        border-color: var(--color-bing);
+    }
+    100% {
+        border-color: var(--color-instruct);
+    }
 }
 #chatBox.bing .box {
-    transition: border-color 0.1s;
-
-
+    /*transition: border-color 0.1s;*/
+    animation-name: bing-animation;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+}
+@keyframes ring-animation {
+    0% {
+        border-color: var(--color-border);
+    }
+    50% {
+        border-color: var(--color-bing);
+    }
+    100% {
+        border-color: var(--color-instruct);
+    }
+}
+#chatBox.ring .box {
+    animation-name: ring-animation!important;
+    animation-iteration-count: infinite!important;
+    animation-duration: 2s!important;
 }
 /*endregion*/
 
@@ -251,6 +281,9 @@
 }
 #chatBox .connection .selectr-container .selectr-selected {
     /*width: 60px; width is controlled in js  */
+}
+#chatBox .connection #audio-out-visual {
+    float: right;
 }
 /*endregion*/
 

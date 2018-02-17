@@ -33,6 +33,20 @@
                         <input class="target-peer-id" value="" placeholder="> TARGET PEER ID">
                         <button class="connect">Connect</button>
                         <input class="color" type="color">
+                        <svg id="audio-out-visual" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs>
+                                <mask id="mask">
+                                    <g id="maskGroup"></g>
+                                </mask>
+                                <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#ff0a0a;stop-opacity:1" />
+                                    <stop offset="20%" style="stop-color:#f1ff0a;stop-opacity:1" />
+                                    <stop offset="90%" style="stop-color:#d923b9;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#050d61;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient)" mask="url(#mask)"></rect>
+                        </svg>
                     </div>
                     <div class="messages">
                         <ul class="msg-box box"></ul>
@@ -62,6 +76,7 @@
     let G = {
             $chatBox: $("#chatBox"),
             chat: {},
+            UI: {},
             audio: {}
         },
         peer,
@@ -149,7 +164,8 @@
             chatConf.metadata.icon = icon;
             chatConf.metadata.bs = bs;
             peerNick = nickname;
-            peer = new Peer({key: 'znx52etk7is8m2t9'});
+            // peer = new Peer({key: 'znx52etk7is8m2t9'});
+            peer = new Peer('someid', {host: 'localhost', port: 9000, path: '/turn'});
             peer.nickname = nickname;
             peer.color = color;
             peer.icon = icon;
@@ -325,11 +341,16 @@
         }
         return id;
     }
-    function nickToPeer(nick) {
+    function nickToPeerID(nick) {
         for (let peer in peers) {
             if (peers[peer].nickname === nick) return peer;
         }
         return false;
+    }
+    function getPeer(peerID) {
+        if(peers.hasOwnProperty(peerID)) {
+            return peers[peerID];
+        }
     }
     function log(...args) {
         console.log(...args);
@@ -366,19 +387,51 @@
         $peerList.empty();
         $peerList.append($fragment);
     }
+    let effectQueue = [];
+    let effectRunning = false;
     function colorBing(hexCode) {
-        let prop = $chatBox[0].style.getPropertyValue("--color-instruct");
-        $chatBox[0].style.setProperty("--color-instruct", hexCode);
+        effectQueue.push({
+            type: "colorBing",
+            color: hexCode
+        });
+        runEffect();
         // $chatBox[0].style.setProperty("--color", hexCode);
         // let rgb = hexToRgb(hexCode);
         // $chatBox[0].style.setProperty("--colorRGB", rgb.r + ", " + rgb.g + ", " + rgb.b);
 
-        setTimeout(() => {
-            $chatBox[0].style.setProperty("--color-instruct", prop);
-            // $chatBox[0].style.setProperty("--color", lastColor);
-            // let rgb = hexToRgb(lastColor);
-            // $chatBox[0].style.setProperty("--colorRGB", rgb.r + ", " + rgb.g + ", " + rgb.b);
-        },500);
+    }
+    function setColorRing(color) {
+        if (!color) {
+            let effectQueue = [];
+            effectRunning = false;
+            G.$chatBox.removeClass("ring");
+        } else {
+            effectRunning = true;
+            $chatBox[0].style.setProperty("--color-bing", color);
+            G.$chatBox.addClass("ring");
+        }
+    }
+    G.UI.setColorRing = setColorRing;
+    function runEffect() {
+        if (effectQueue.length < 1 || effectRunning) return;
+        effectRunning = true;
+        let effect = effectQueue.splice(0, 1)[0];
+
+        switch(effect.type) {
+            case "colorBing":
+                let restoreColor = $chatBox[0].style.getPropertyValue("--color-instruct");
+                $chatBox[0].style.setProperty("--color-instruct", effect.color);
+                setTimeout(() => {
+                    $chatBox[0].style.setProperty("--color-instruct", restoreColor);
+                    if (effectQueue.length > 0) {
+                        effectRunning = false;
+                        runEffect();
+                    }
+                },500);
+                break;
+            case "bla":
+                break;
+        }
     }
     /*endregion*/
 
@@ -502,25 +555,19 @@
         // $receivedCodeView.val(data.code);
         openFileWidget("code", data.language, data.code);
     }
-    G.audio.connect = function(stream) {
-        // let captureStream = $audioOut[0].captureStream(stream);
-        // $audioOut[0].play();
-
-        var audio = $('<audio autoplay />').appendTo('body');
-        audio[0].src = URL.createObjectURL(stream);
-
-        // var outputTracks = [];
-        // outputTracks = outputTracks.concat(outputAudioStream.getTracks());
-        // outputTracks = outputTracks.concat(outputVideoStream.getTracks());
-        // outputMediaStream = new MediaStream(outputTracks);
-    };
 
     //audio
-    let audioContext = new AudioContext();
     let sounds = new Map();
-
+    let channels = {};
+    let audioContext = new AudioContext();
+    let mainGain = audioContext.createGain();
+    mainGain.connect(audioContext.destination);
+    // mainGain.gain.value = 0.5;
+    // gainNode.gain.setTargetAtTime(1.0, audioCtx.currentTime + 1, 0.5);
+    visualizeAudioOut();
+    G.audio.audioContext = audioContext;
     function loadSound(name, url) {
-        var request = new XMLHttpRequest();
+        let request = new XMLHttpRequest();
         request.open('GET', url, true);
         request.responseType = 'arraybuffer';
 
@@ -533,18 +580,99 @@
             }, () => {
                 console.error("error while loading sound");
             });
-        }
+        };
         request.send();
     }
+    G.audio.loadSound = loadSound;
+
     function playSound(name) {
         if (!sounds.has(name)) throw new Error("sound not found!");
         let buffer = sounds.get(name).buffer;
-        var source = audioContext.createBufferSource();
+        let source = audioContext.createBufferSource();
         source.buffer = buffer;
-        source.connect(audioContext.destination);
+        source.connect(mainGain);
         source.start(0);
     }
+    G.audio.playSound = playSound;
+
+    function addAudioChannel(name) {
+        if (channels.hasOwnProperty(name)) {
+            throw new Error("Channel name '"+ name +"' already taken!");
+        }
+        let gain = audioContext.createGain();
+        gain.connect(mainGain);
+        let channel = {
+            setGain(value) {
+                // gain.gain.value = value;
+                gain.gain.setTargetAtTime(1.0, audioContext.currentTime + 1, value);
+            },
+            connect(src) {
+                if (src instanceof MediaStream) {
+                    let audioEle = new Audio();
+                    audioEle.srcObject = src;
+                    audioEle.onloadedmetadata = function(e) {
+                        audioEle.play();
+                        // video.muted = true;
+                    };
+                    src = audioContext.createMediaStreamSource(src);
+                }
+                src.connect(gain);
+            }
+        };
+        channels[name] = channel;
+        return channel;
+    }
+    G.audio.addAudioChannel = addAudioChannel;
+
+    function visualizeAudioOut() {
+        let path;
+        let visualizer = $('#audio-out-visual')[0];
+        if (!visualizer) return;
+        let paths = visualizer.getElementsByTagName('path');
+        let mask = $('#mask', visualizer)[0];
+        let analyser = audioContext.createAnalyser();
+
+        mainGain.connect(analyser);
+        analyser.fftSize = 1024;
+
+        let frequencyArray = new Uint8Array(analyser.frequencyBinCount);
+        visualizer.setAttribute('viewBox', '0 0 255 255');
+
+        //Through the frequencyArray has a length longer than 255, there seems to be no
+        //significant data after this point. Not worth visualizing.
+        for (let i = 0 ; i < 255; i++) {
+            path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('stroke-dasharray', '4,1');
+            mask.appendChild(path);
+        }
+        let doDraw = function () {
+            requestAnimationFrame(doDraw);
+            analyser.getByteFrequencyData(frequencyArray);
+            let adjustedLength;
+            for (let i = 0 ; i < 255; i+=4) {
+                adjustedLength = Math.floor(frequencyArray[i]) - (Math.floor(frequencyArray[i]) % 5);
+                paths[i].setAttribute('d', 'M '+ (i) +',255 l 0,-' + adjustedLength);
+            }
+
+        };
+        doDraw();
+    }
+
+    //trash
+    G.audio.connect = function(stream) {
+        // let captureStream = $audioOut[0].captureStream(stream);
+        // $audioOut[0].play();
+
+        var audio = $('<audio autoplay />').appendTo('body');
+        audio[0].src = URL.createObjectURL(stream);
+
+        // var outputTracks = [];
+        // outputTracks = outputTracks.concat(outputAudioStream.getTracks());
+        // outputTracks = outputTracks.concat(outputVideoStream.getTracks());
+        // outputMediaStream = new MediaStream(outputTracks);
+    };
     loadSound("message", "/snipChat/src/Message.wav");
+
     /*region widget handling */
     let widgets = {};
     let commands = {};
@@ -666,7 +794,9 @@
         }
     }
     G.peerToNick = peerToNick;
-    G.nickToPeer = nickToPeer;
+    G.nickToPeerID = nickToPeerID;
+    G.nickToPeerID = nickToPeerID;
+    G.getPeer = getPeer;
     G.chat.write = write;
     G.chat.error = error;
     G.chat.writeWidget = writeWidget;
@@ -823,6 +953,7 @@
     //     };
     //     this.onCode = (data) => {};
     // });
+
     Widget("code", function(G) {
         let receivedCodeViewFlask;
         let codeViewFlask;
@@ -903,22 +1034,9 @@
         let constraints = { audio: true, video: false };
         this.command = "call";
         this.init = function() {
+
             // `
             //     <svg id="visualizer-in" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            //         <defs>
-            //             <mask id="mask">
-            //                 <g id="maskGroup"></g>
-            //             </mask>
-            //             <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            //                 <stop offset="0%" style="stop-color:#ff0a0a;stop-opacity:1" />
-            //                 <stop offset="20%" style="stop-color:#f1ff0a;stop-opacity:1" />
-            //                 <stop offset="90%" style="stop-color:#d923b9;stop-opacity:1" />
-            //                 <stop offset="100%" style="stop-color:#050d61;stop-opacity:1" />
-            //             </linearGradient>
-            //         </defs>
-            //         <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient)" mask="url(#mask)"></rect>
-            //     </svg>
-            //     <svg id="visualizer-out" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             //         <defs>
             //             <mask id="mask">
             //                 <g id="maskGroup"></g>
@@ -944,20 +1062,24 @@
         };
         this.onPeerStart = (peer, peerID) => {
             peer.on('call', function(call) {
+                let incomingPeer = getPeer(call.peer);
+                G.UI.setColorRing(incomingPeer.color);
+                let audioChannel = G.audio.addAudioChannel("callin_" + call.peer);
                 call.on('stream', function(stream) {
-                    visualize("in", stream);
-                    G.audio.connect(stream);
+                    // visualize("in", stream);
+                    // G.audio.connect(stream);
+                    audioChannel.connect(stream);
                 });
                 new Promise(function (resolve, reject) {
                     let peer = "USER";
                     let $ele = G.chat.writeWidget("callIn", `<span>Incoming Call ${peer}</span><span class="fas fa-phone answer-call">ANSWER</span><span class="fas fa-phone reject-call">REJECT</span>`);
                     $(".answer-call", $ele).on("click", function answerCall(e) {
-                        console.log("click");
+                        G.UI.setColorRing(false);
                         resolve();
                         $(".answer-call", $ele).off("click", answerCall);
                     });
                     $(".reject-call", $ele).on("click", function rejectCall(e) {
-                        console.log("click");
+                        G.UI.setColorRing(false);
                         reject();
                         $(".reject-call", $ele).off("click", rejectCall);
                     });
@@ -980,7 +1102,7 @@
         };
         function call(nick) {
             return new Promise(function (resolve, reject) {
-                let targetPeer = G.nickToPeer(nick);
+                let targetPeer = G.nickToPeerID(nick);
                 if (targetPeer === false) {
                     reject("Peer does not exists!");
                     return;
@@ -988,11 +1110,13 @@
                 navigator.mediaDevices.getUserMedia(constraints)
                     .then(function(ownStream) {
                         let call = peer.call(targetPeer, ownStream);
+                        let audioChannel = G.audio.addAudioChannel("call_" + targetPeer);
 
+                            // audioChannel.connect(ownStream);
                         call.on('stream', function(stream) {
-                            visualize("out", ownStream);
-                            visualize("in", stream);
-                            G.audio.connect(stream);
+                            console.log(stream, ownStream)
+                            // visualize("out", ownStream);
+                            audioChannel.connect(stream);
                         });
                         /* use the stream */
                     })
