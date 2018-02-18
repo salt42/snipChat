@@ -1,12 +1,14 @@
-let PORT = 8080;
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
+    mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
+    mongoURLLabel = "";
+
 // let IP = (process.env.OPENSHIFT_BUILD_NAME) ? "0.0.0.0"|| 'localhost';
 let path = require('path');
 let express = require('express');
 let app = express();
 let ExpressPeerServer = require('./peerServer/index').ExpressPeerServer;
-let server = app.listen(PORT, function () {
-    // console.log( "Listening on port " + PORT )
-});
+let server = app.listen(port, ip);
 
 
 app.use(express.static(path.join(__dirname + '/../src')));
