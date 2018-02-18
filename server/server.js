@@ -1,4 +1,4 @@
-let PORT = 80;
+let PORT = 8080;
 // let IP = (process.env.OPENSHIFT_BUILD_NAME) ? "0.0.0.0"|| 'localhost';
 let path = require('path');
 let express = require('express');
@@ -24,7 +24,6 @@ app.post('/register', function (req, res, next) {
 
 });
 app.post('/login', function (req, res, next) {
-    console.log(req.body);
     if (req.body.username && req.body.username === 'user' && req.body.pass && req.body.pass === 'pass') {
         req.session.authenticated = true;
         res.json({
