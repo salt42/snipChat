@@ -21,7 +21,12 @@
     };
 }(jQuery));
 (function() {
+
+    /*region icon*/
     let icons = ["address-book","address-card","adjust","align-center","align-justify","align-left","align-right","ambulance","american-sign-language-interpreting","anchor","angle-double-down","angle-double-left","angle-double-right","angle-double-up","angle-down","angle-left","angle-right","angle-up","archive","arrow-alt-circle-down","arrow-alt-circle-left","arrow-alt-circle-right","arrow-alt-circle-up","arrow-circle-down","arrow-circle-left","arrow-circle-right","arrow-circle-up","arrow-down","arrow-left","arrow-right","arrow-up","arrows-alt","arrows-alt-h","arrows-alt-v","assistive-listening-systems","asterisk","at","audio-description","backward","balance-scale","ban","barcode","bars","baseball-ball","basketball-ball","bath","battery-empty","battery-full","battery-half","battery-quarter","battery-three-quarters","bed","beer","bell","bell-slash","bicycle","binoculars","birthday-cake","blind","bold","bolt","bomb","book","bookmark","bowling-ball","braille","briefcase","bug","building","bullhorn","bullseye","bus","calculator","calendar","calendar-alt","calendar-check","calendar-minus","calendar-plus","calendar-times","camera","camera-retro","car","caret-down","caret-left","caret-right","caret-square-down","caret-square-left","caret-square-right","caret-square-up","caret-up","cart-arrow-down","cart-plus","certificate","chart-area","chart-bar","chart-line","chart-pie","check","check-circle","check-square","chess","chess-bishop","chess-board","chess-king","chess-knight","chess-pawn","chess-queen","chess-rook","chevron-circle-down","chevron-circle-left","chevron-circle-right","chevron-circle-up","chevron-down","chevron-left","chevron-right","chevron-up","child","circle","circle-notch","clipboard","clock","clone","closed-captioning","cloud","cloud-download-alt","cloud-upload-alt","code","code-branch","coffee","cog","cogs","columns","comment","comment-alt","comments","compass","compress","copy","copyright","credit-card","crop","crosshairs","cube","cubes","cut","database","deaf","desktop","dollar-sign","dot-circle","download","edit","eject","ellipsis-h","ellipsis-v","envelope","envelope-open","envelope-square","eraser","euro-sign","exchange-alt","exclamation","exclamation-circle","exclamation-triangle","expand","expand-arrows-alt","external-link-alt","external-link-square-alt","eye","eye-dropper","eye-slash","fast-backward","fast-forward","fax","female","fighter-jet","file","file-alt","file-archive","file-audio","file-code","file-excel","file-image","file-pdf","file-powerpoint","file-video","file-word","film","filter","fire","fire-extinguisher","flag","flag-checkered","flask","folder","folder-open","font","football-ball","forward","frown","futbol","gamepad","gavel","gem","genderless","gift","glass-martini","globe","golf-ball","graduation-cap","h-square","hand-lizard","hand-paper","hand-peace","hand-point-down","hand-point-left","hand-point-right","hand-point-up","hand-pointer","hand-rock","hand-scissors","hand-spock","handshake","hashtag","hdd","heading","headphones","heart","heartbeat","history","hockey-puck","home","hospital","hourglass","hourglass-end","hourglass-half","hourglass-start","i-cursor","id-badge","id-card","image","images","inbox","indent","industry","info","info-circle","italic","key","keyboard","language","laptop","leaf","lemon","level-down-alt","level-up-alt","life-ring","lightbulb","link","lira-sign","list","list-alt","list-ol","list-ul","location-arrow","lock","lock-open","long-arrow-alt-down","long-arrow-alt-left","long-arrow-alt-right","long-arrow-alt-up","low-vision","magic","magnet","male","map","map-marker","map-marker-alt","map-pin","map-signs","mars","mars-double","mars-stroke","mars-stroke-h","mars-stroke-v","medkit","meh","mercury","microchip","microphone","microphone-slash","minus","minus-circle","minus-square","mobile","mobile-alt","money-bill-alt","moon","motorcycle","mouse-pointer","music","neuter","newspaper","object-group","object-ungroup","outdent","paint-brush","paper-plane","paperclip","paragraph","paste","pause","pause-circle","paw","pen-square","pencil-alt","percent","phone","phone-square","phone-volume","plane","play","play-circle","plug","plus","plus-circle","plus-square","podcast","pound-sign","power-off","print","puzzle-piece","qrcode","question","question-circle","quidditch","quote-left","quote-right","random","recycle","redo","redo-alt","registered","reply","reply-all","retweet","road","rocket","rss","rss-square","ruble-sign","rupee-sign","save","search","search-minus","search-plus","server","share","share-alt","share-alt-square","share-square","shekel-sign","shield-alt","ship","shopping-bag","shopping-basket","shopping-cart","shower","sign-in-alt","sign-language","sign-out-alt","signal","sitemap","sliders-h","smile","snowflake","sort","sort-alpha-down","sort-alpha-up","sort-amount-down","sort-amount-up","sort-down","sort-numeric-down","sort-numeric-up","sort-up","space-shuttle","spinner","square","square-full","star","star-half","step-backward","step-forward","stethoscope","sticky-note","stop","stop-circle","stopwatch","street-view","strikethrough","subscript","subway","suitcase","sun","superscript","sync","sync-alt","table","table-tennis","tablet","tablet-alt","tachometer-alt","tag","tags","tasks","taxi","terminal","text-height","text-width","th","th-large","th-list","thermometer-empty","thermometer-full","thermometer-half","thermometer-quarter","thermometer-three-quarters","thumbs-down","thumbs-up","thumbtack","ticket-alt","times","times-circle","tint","toggle-off","toggle-on","trademark","train","transgender","transgender-alt","trash","trash-alt","tree","trophy","truck","tty","tv","umbrella","underline","undo","undo-alt","universal-access","university","unlink","unlock","unlock-alt","upload","user","user-circle","user-md","user-plus","user-secret","user-times","users","utensil-spoon","utensils","venus","venus-double","venus-mars","video","volleyball-ball","volume-down","volume-off","volume-up","wheelchair","wifi","window-close","window-maximize","window-minimize","window-restore","won-sign","wrench","yen-sign","address-book","address-card","arrow-alt-circle-down","arrow-alt-circle-left","arrow-alt-circle-right","arrow-alt-circle-up","bell","bell-slash","bookmark","building","calendar","calendar-alt","calendar-check","calendar-minus","calendar-plus","calendar-times","caret-square-down","caret-square-left","caret-square-right","caret-square-up","chart-bar","check-circle","check-square","circle","clipboard","clock","clone","closed-captioning","comment","comment-alt","comments","compass","copy","copyright","credit-card","dot-circle","edit","envelope","envelope-open","eye-slash","file","file-alt","file-archive","file-audio","file-code","file-excel","file-image","file-pdf","file-powerpoint","file-video","file-word","flag","folder","folder-open","frown","futbol","gem","hand-lizard","hand-paper","hand-peace","hand-point-down","hand-point-left","hand-point-right","hand-point-up","hand-pointer","hand-rock","hand-scissors","hand-spock","handshake","hdd","heart","hospital","hourglass","id-badge","id-card","image","images","keyboard","lemon","life-ring","lightbulb","list-alt","map","meh","minus-square","money-bill-alt","moon","newspaper","object-group","object-ungroup","paper-plane","pause-circle","play-circle","plus-square","question-circle","registered","save","share-square","smile","snowflake","square","star","star-half","sticky-note","stop-circle","sun","thumbs-down","thumbs-up","times-circle","trash-alt","user","user-circle","window-close","window-maximize","window-minimize","window-restore","500px","accessible-icon","accusoft","adn","adversal","affiliatetheme","algolia","amazon","amazon-pay","amilia","android","angellist","angrycreative","angular","app-store","app-store-ios","apper","apple","apple-pay","asymmetrik","audible","autoprefixer","avianex","aviato","aws","bandcamp","behance","behance-square","bimobject","bitbucket","bitcoin","bity","black-tie","blackberry","blogger","blogger-b","bluetooth","bluetooth-b","btc","buromobelexperte","buysellads","cc-amazon-pay","cc-amex","cc-apple-pay","cc-diners-club","cc-discover","cc-jcb","cc-mastercard","cc-paypal","cc-stripe","cc-visa","centercode","chrome","cloudscale","cloudsmith","cloudversify","codepen","codiepie","connectdevelop","contao","cpanel","creative-commons","css3","css3-alt","cuttlefish","d-and-d","dashcube","delicious","deploydog","deskpro","deviantart","digg","digital-ocean","discord","discourse","dochub","docker","draft2digital","dribbble","dribbble-square","dropbox","drupal","dyalog","earlybirds","edge","elementor","ember","empire","envira","erlang","ethereum","etsy","expeditedssl","facebook","facebook-f","facebook-messenger","facebook-square","firefox","first-order","firstdraft","flickr","flipboard","fly","font-awesome","font-awesome-alt","font-awesome-flag","fonticons","fonticons-fi","fort-awesome","fort-awesome-alt","forumbee","foursquare","free-code-camp","freebsd","get-pocket","gg","gg-circle","git","git-square","github","github-alt","github-square","gitkraken","gitlab","gitter","glide","glide-g","gofore","goodreads","goodreads-g","google","google-drive","google-play","google-plus","google-plus-g","google-plus-square","google-wallet","gratipay","grav","gripfire","grunt","gulp","hacker-news","hacker-news-square","hips","hire-a-helper","hooli","hotjar","houzz","html5","hubspot","imdb","instagram","internet-explorer","ioxhost","itunes","itunes-note","jenkins","joget","joomla","js","js-square","jsfiddle","keycdn","kickstarter","kickstarter-k","korvue","laravel","lastfm","lastfm-square","leanpub","less","line","linkedin","linkedin-in","linode","linux","lyft","magento","maxcdn","medapps","medium","medium-m","medrt","meetup","microsoft","mix","mixcloud","mizuni","modx","monero","napster","nintendo-switch","node","node-js","npm","ns8","nutritionix","odnoklassniki","odnoklassniki-square","opencart","openid","opera","optin-monster","osi","page4","pagelines","palfed","patreon","paypal","periscope","phabricator","phoenix-framework","php","pied-piper","pied-piper-alt","pied-piper-pp","pinterest","pinterest-p","pinterest-square","playstation","product-hunt","pushed","python","qq","quinscape","quora","ravelry","react","rebel","red-river","reddit","reddit-alien","reddit-square","rendact","renren","replyd","resolving","rocketchat","rockrms","safari","sass","schlix","scribd","searchengin","sellcast","sellsy","servicestack","shirtsinbulk","simplybuilt","sistrix","skyatlas","skype","slack","slack-hash","slideshare","snapchat","snapchat-ghost","snapchat-square","soundcloud","speakap","spotify","stack-exchange","stack-overflow","staylinked","steam","steam-square","steam-symbol","sticker-mule","strava","stripe","stripe-s","studiovinari","stumbleupon","stumbleupon-circle","superpowers","supple","telegram","telegram-plane","tencent-weibo","themeisle","trello","tripadvisor","tumblr","tumblr-square","twitch","twitter","twitter-square","typo3","uber","uikit","uniregistry","untappd","usb","ussunnah","vaadin","viacoin","viadeo","viadeo-square","viber","vimeo","vimeo-square","vimeo-v","vine","vk","vnv","vuejs","weibo","weixin","whatsapp","whatsapp-square","whmcs","wikipedia-w","windows","wordpress","wordpress-simple","wpbeginner","wpexplorer","wpforms","xbox","xing","xing-square","y-combinator","yahoo","yandex","yandex-international","yelp","yoast","youtube","youtube-square"];
+    /*endregion*/
+
+    /*region html*/
     let html = `<div id="chatBox" class="flex-vert">
                     <div class="connection box">
                         <span class="peer-info"></span>
@@ -70,9 +75,27 @@
                         </div>
                         <ul class="peer-list box"></ul>
                     </div>
+                    <div class="login">
+                        <div class="box">
+                            <form class="login-register-form">
+                                <p><input name="name" type="text" placeholder=">> User Name"></p>
+                                <p><input name="password" type="password" placeholder=">> Password"></p>
+                                <button class="login">Login</button>
+                                <p><input name="retype" type="password" placeholder=">> Retype Password"></p>
+                                <p><input name="email" type="email" placeholder=">> E-Mail"></p>
+                                <p>
+                                    <input name="color" type="color">
+                                    <select name="icon" class="icon"></select>
+                                </p>
+                                <button class="register">Register</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>`;
     $(document.body).append(html);
+    /*endregion*/
 
+    /*region props*/
     let G = {
             $chatBox: $("#chatBox"),
             chat: {},
@@ -121,23 +144,29 @@
             metadata: {}
         },
         _Config = localStorage.getItem("chatBox.config");
-        if (!_Config) {
-            _Config = {};
+
+    /*endregion*/
+
+    /*region config*/
+    if (!_Config) {
+        _Config = {};
+    }
+    G.config = {
+        set(key, value) {
+            if (!_Config.hasOwnProperty(key)) return false;
+            _Config[key] = value;
+            return true;
+        },
+        has(key) {
+            return (_Config.hasOwnProperty(key));
+        },
+        get(key) {
+            if (!_Config.hasOwnProperty(key)) return null;
+            return _Config[key];
         }
-        G.config = {
-            set(key, value) {
-                if (!_Config.hasOwnProperty(key)) return false;
-                _Config[key] = value;
-                return true;
-            },
-            has(key) {
-                return (_Config.hasOwnProperty(key));
-            },
-            get(key) {
-                if (!_Config.hasOwnProperty(key)) return null;
-                return _Config[key];
-            }
-        };
+    };
+    /*endregion*/
+
     /*region p2p handling */
     function addPeer(peerID, nickname, icon, color, chat) {
         if (!peers.hasOwnProperty(peerID)) {
@@ -165,7 +194,7 @@
             chatConf.metadata.bs = bs;
             peerNick = nickname;
             // peer = new Peer({key: 'znx52etk7is8m2t9'});
-            peer = new Peer('someid', {host: 'localhost', port: 9000, path: '/turn'});
+            peer = new Peer(nickname, {host: 'localhost', port: 9000, path: '/turn'});
             peer.nickname = nickname;
             peer.color = color;
             peer.icon = icon;
@@ -395,10 +424,6 @@
             color: hexCode
         });
         runEffect();
-        // $chatBox[0].style.setProperty("--color", hexCode);
-        // let rgb = hexToRgb(hexCode);
-        // $chatBox[0].style.setProperty("--colorRGB", rgb.r + ", " + rgb.g + ", " + rgb.b);
-
     }
     function setColorRing(color) {
         if (!color) {
@@ -472,6 +497,58 @@
             g: parseInt(result[2], 16),
             b: parseInt(result[3], 16)
         } : null;
+    }
+    /**
+     * Converts an HSL color value to RGB. Conversion formula
+     * adapted from http://en.wikipedia.org/wiki/HSL_color_space.
+     * Assumes h, s, and l are contained in the set [0, 1] and
+     * returns r, g, and b in the set [0, 255].
+     *
+     * @param   {number}  hue           The hue
+     * @param   {number}  saturation    The saturation
+     * @param   {number}  lightness     The lightness
+     * @return  {object}           The RGB representation
+     */
+    function hslToRgb(hue, saturation, lightness){
+        let r, g, b;
+
+        if(saturation === 0){
+            r = g = b = lightness; // achromatic
+        }else{
+            let hue2rgb = function hue2rgb(p, q, t){
+                if(t < 0) t += 1;
+                if(t > 1) t -= 1;
+                if(t < 1/6) return p + (q - p) * 6 * t;
+                if(t < 1/2) return q;
+                if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                return p;
+            };
+
+            let q = lightness < 0.5 ? lightness * (1 + saturation) : lightness + saturation - lightness * saturation;
+            let p = 2 * lightness - q;
+            r = hue2rgb(p, q, hue + 1/3);
+            g = hue2rgb(p, q, hue);
+            b = hue2rgb(p, q, hue - 1/3);
+        }
+
+        return {
+            r: Math.round(r * 255),
+            g: Math.round(g * 255),
+            b: Math.round(b * 255)
+        }
+    }
+
+    function rgbToHex(rgb) {
+        function componentToHex(c) {
+            let hex = c.toString(16);
+            return hex.length === 1 ? "0" + hex : hex;
+        }
+        return "#" + componentToHex(rgb.r) + componentToHex(rgb.g) + componentToHex(rgb.b);
+    }
+    function randomColor() {
+        let hue = Math.random();
+        let rgb = hslToRgb(hue, 0.9, 0.9);
+        return rgbToHex(rgb);
     }
     /*endregion*/
 
@@ -556,6 +633,7 @@
         openFileWidget("code", data.language, data.code);
     }
 
+    /*region audio*/
     //audio
     let sounds = new Map();
     let channels = {};
@@ -671,7 +749,9 @@
         // outputTracks = outputTracks.concat(outputVideoStream.getTracks());
         // outputMediaStream = new MediaStream(outputTracks);
     };
-    loadSound("message", "/snipChat/src/Message.wav");
+    loadSound("message", "/sounds/Message.wav");
+
+    /*endregion audio*/
 
     /*region widget handling */
     let widgets = {};
@@ -732,6 +812,7 @@
         return true;
     }
     /*endregion*/
+
     function guid() {
         function s4() {
             return Math.floor((1 + Math.random()) * 0x10000)
@@ -780,6 +861,9 @@
                 $chatBox[0].style.setProperty("--user-color", color);
                 $peerInfo.html(`<i class="fa fa-${icon}" style=" margin: 0 5px 0 8px"></i> ${nickname}`);
                 $peerInfo.show();
+            }, (err) => {
+                console.log("//@todo handle connection error");
+                throw err;
             });
         } else {
             //copy
@@ -859,20 +943,73 @@
             setColor(e.target.value);
         });
     }
+    function initLoginView() {
+        let $form = $(".login .login-register-form", G.$chatBox);
 
+        //prepare icon select
+        // for (let i = 0; i < icons.length - 331; i++) {
+        //     $peerIcon.append($(`<option value="${icons[i]}" data-icon="${icons[i]}" data-hidden-text="${icons[i]}"></option>`));
+        // }
+
+        function myRenderFunction(option) {
+            return `<i class="fa fa-${option}"></i><span></span>`;
+        }
+        peerSelect = new Selectr("#chatBox .login .icon", {
+            renderSelection: myRenderFunction,
+            renderOption: myRenderFunction,
+            searchable: false,
+            width: 50,
+            customClass: 'icon',
+            data: icons,
+
+        });
+
+        $("button.login", $form).click((e) => {
+            let data = $form.serializeArray();
+            //send login
+            //@todo validate
+            $.ajax({
+                url: "/login",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: JSON.stringify({
+                    username: data[0].value,
+                    pass: data[1].value
+                })
+            }).then((res) => {
+                console.log(res)
+            }, (err) => { throw err });
+        });
+        $("button.register", $form).click((e) => {
+
+            let data = $form.serializeArray();
+            //send register
+            //@todo validate
+            $.ajax({
+                url: "/register",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: JSON.stringify({
+                    username: data[0].value,
+                    pass: data[1].value
+                })
+            }).then((res) => {
+                console.log(res)
+            }, (err) => { throw err });
+        });
+    }
     $(document).ready(function() {
+        initLoginView();
         //color
         lastColor = localStorage.getItem("lastColor");
         if (!lastColor) {
-            lastColor = "#";
-            while(lastColor.length < 6) {
-                lastColor += Math.floor(Math.max(Math.random()*255, 80)).toString(16);
-            }
+            lastColor = randomColor();
             localStorage.setItem("lastColor", lastColor);
         }
         setColor(lastColor);
 
-        //prepare icon select
         for (let i = 0; i < icons.length - 331; i++) {
             $peerIcon.append($(`<option value="${icons[i]}" data-icon="${icons[i]}" data-hidden-text="${icons[i]}"></option>`));
         }
@@ -901,8 +1038,6 @@
             peerColor.setColor(color);
             peerSelect.setValue(icons[Math.floor(Math.random() * icons.length)]);
         }
-
-
 
         initUIevents();
         fireEvent("init", G.$chatBox);
