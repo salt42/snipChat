@@ -2,7 +2,7 @@ let path = require('path');
 let express = require('express');
 let app = express();
 let ExpressPeerServer = require('./peerServer/index').ExpressPeerServer;
-let server = app.listen(80);
+let server = app.listen(process.env.PORT || 80);
 
 
 app.use(express.static(path.join(__dirname + '/../src')));
