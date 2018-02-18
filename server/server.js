@@ -1,11 +1,11 @@
-let PORT = process.env.OPENSHIFT_NODEJS_PORT || 80;
-let IP = process.env.OPENSHIFT_NODEJS_IP || 'localhost';
+let PORT = 80;
+// let IP = (process.env.OPENSHIFT_BUILD_NAME) ? "0.0.0.0"|| 'localhost';
 let path = require('path');
 let express = require('express');
 let app = express();
 let ExpressPeerServer = require('./peerServer/index').ExpressPeerServer;
-let server = app.listen(PORT, IP, function () {
-    console.log( "Listening on " + IP + ", port " + PORT )
+let server = app.listen(PORT, function () {
+    // console.log( "Listening on port " + PORT )
 });
 
 
