@@ -377,16 +377,16 @@ app.get("/howiam", function(req, res, next) {
         });
     }
 });
-app.get("/friends/:name", function(req, res, next) {
-    UserManager.find({username: req.params.name}).then((user) => {
-        res.json(user);
-    });
-});
-app.get("/debug", function(req, res, next) {
-    console.dir(app)
-    console.log(server)
-    res.json("debugging");
-});
+// app.get("/friends/:name", function(req, res, next) {
+//     UserManager.find({username: req.params.name}).then((user) => {
+//         res.json(user);
+//     });
+// });
+// app.get("/debug", function(req, res, next) {
+//     console.dir(app)
+//     console.log(server)
+//     res.json("debugging");
+// });
 //404
 app.use(function (req, res, next) {
     res.status(404).send("Sorry can't find that!")
