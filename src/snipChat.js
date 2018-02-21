@@ -84,7 +84,7 @@
                         <ul class="peer-list box"></ul>
                     </div>
                     <div class="login">
-                        <div class="box" style="width: 170px; height: 350px; overflow: visible; position: relative; box-sizing: content-box">
+                        <div class="box" style="width: 170px; height: 350px; overflow: hidden; position: relative; box-sizing: content-box">
                             <form class="register-form"    style="left: -200px;">
                                 <button  type="button" class="go-to-login">Login&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></button>
                                 <p><input name="name"     type="text"     placeholder=">> User Name" required></p>
