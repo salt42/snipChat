@@ -24,20 +24,28 @@
 
     /*region icon*/
     let icons = ["address-book","address-card","adjust","align-center","align-justify","align-left","align-right","ambulance","american-sign-language-interpreting","anchor","angle-double-down","angle-double-left","angle-double-right","angle-double-up","angle-down","angle-left","angle-right","angle-up","archive","arrow-alt-circle-down","arrow-alt-circle-left","arrow-alt-circle-right","arrow-alt-circle-up","arrow-circle-down","arrow-circle-left","arrow-circle-right","arrow-circle-up","arrow-down","arrow-left","arrow-right","arrow-up","arrows-alt","arrows-alt-h","arrows-alt-v","assistive-listening-systems","asterisk","at","audio-description","backward","balance-scale","ban","barcode","bars","baseball-ball","basketball-ball","bath","battery-empty","battery-full","battery-half","battery-quarter","battery-three-quarters","bed","beer","bell","bell-slash","bicycle","binoculars","birthday-cake","blind","bold","bolt","bomb","book","bookmark","bowling-ball","braille","briefcase","bug","building","bullhorn","bullseye","bus","calculator","calendar","calendar-alt","calendar-check","calendar-minus","calendar-plus","calendar-times","camera","camera-retro","car","caret-down","caret-left","caret-right","caret-square-down","caret-square-left","caret-square-right","caret-square-up","caret-up","cart-arrow-down","cart-plus","certificate","chart-area","chart-bar","chart-line","chart-pie","check","check-circle","check-square","chess","chess-bishop","chess-board","chess-king","chess-knight","chess-pawn","chess-queen","chess-rook","chevron-circle-down","chevron-circle-left","chevron-circle-right","chevron-circle-up","chevron-down","chevron-left","chevron-right","chevron-up","child","circle","circle-notch","clipboard","clock","clone","closed-captioning","cloud","cloud-download-alt","cloud-upload-alt","code","code-branch","coffee","cog","cogs","columns","comment","comment-alt","comments","compass","compress","copy","copyright","credit-card","crop","crosshairs","cube","cubes","cut","database","deaf","desktop","dollar-sign","dot-circle","download","edit","eject","ellipsis-h","ellipsis-v","envelope","envelope-open","envelope-square","eraser","euro-sign","exchange-alt","exclamation","exclamation-circle","exclamation-triangle","expand","expand-arrows-alt","external-link-alt","external-link-square-alt","eye","eye-dropper","eye-slash","fast-backward","fast-forward","fax","female","fighter-jet","file","file-alt","file-archive","file-audio","file-code","file-excel","file-image","file-pdf","file-powerpoint","file-video","file-word","film","filter","fire","fire-extinguisher","flag","flag-checkered","flask","folder","folder-open","font","football-ball","forward","frown","futbol","gamepad","gavel","gem","genderless","gift","glass-martini","globe","golf-ball","graduation-cap","h-square","hand-lizard","hand-paper","hand-peace","hand-point-down","hand-point-left","hand-point-right","hand-point-up","hand-pointer","hand-rock","hand-scissors","hand-spock","handshake","hashtag","hdd","heading","headphones","heart","heartbeat","history","hockey-puck","home","hospital","hourglass","hourglass-end","hourglass-half","hourglass-start","i-cursor","id-badge","id-card","image","images","inbox","indent","industry","info","info-circle","italic","key","keyboard","language","laptop","leaf","lemon","level-down-alt","level-up-alt","life-ring","lightbulb","link","lira-sign","list","list-alt","list-ol","list-ul","location-arrow","lock","lock-open","long-arrow-alt-down","long-arrow-alt-left","long-arrow-alt-right","long-arrow-alt-up","low-vision","magic","magnet","male","map","map-marker","map-marker-alt","map-pin","map-signs","mars","mars-double","mars-stroke","mars-stroke-h","mars-stroke-v","medkit","meh","mercury","microchip","microphone","microphone-slash","minus","minus-circle","minus-square","mobile","mobile-alt","money-bill-alt","moon","motorcycle","mouse-pointer","music","neuter","newspaper","object-group","object-ungroup","outdent","paint-brush","paper-plane","paperclip","paragraph","paste","pause","pause-circle","paw","pen-square","pencil-alt","percent","phone","phone-square","phone-volume","plane","play","play-circle","plug","plus","plus-circle","plus-square","podcast","pound-sign","power-off","print","puzzle-piece","qrcode","question","question-circle","quidditch","quote-left","quote-right","random","recycle","redo","redo-alt","registered","reply","reply-all","retweet","road","rocket","rss","rss-square","ruble-sign","rupee-sign","save","search","search-minus","search-plus","server","share","share-alt","share-alt-square","share-square","shekel-sign","shield-alt","ship","shopping-bag","shopping-basket","shopping-cart","shower","sign-in-alt","sign-language","sign-out-alt","signal","sitemap","sliders-h","smile","snowflake","sort","sort-alpha-down","sort-alpha-up","sort-amount-down","sort-amount-up","sort-down","sort-numeric-down","sort-numeric-up","sort-up","space-shuttle","spinner","square","square-full","star","star-half","step-backward","step-forward","stethoscope","sticky-note","stop","stop-circle","stopwatch","street-view","strikethrough","subscript","subway","suitcase","sun","superscript","sync","sync-alt","table","table-tennis","tablet","tablet-alt","tachometer-alt","tag","tags","tasks","taxi","terminal","text-height","text-width","th","th-large","th-list","thermometer-empty","thermometer-full","thermometer-half","thermometer-quarter","thermometer-three-quarters","thumbs-down","thumbs-up","thumbtack","ticket-alt","times","times-circle","tint","toggle-off","toggle-on","trademark","train","transgender","transgender-alt","trash","trash-alt","tree","trophy","truck","tty","tv","umbrella","underline","undo","undo-alt","universal-access","university","unlink","unlock","unlock-alt","upload","user","user-circle","user-md","user-plus","user-secret","user-times","users","utensil-spoon","utensils","venus","venus-double","venus-mars","video","volleyball-ball","volume-down","volume-off","volume-up","wheelchair","wifi","window-close","window-maximize","window-minimize","window-restore","won-sign","wrench","yen-sign","address-book","address-card","arrow-alt-circle-down","arrow-alt-circle-left","arrow-alt-circle-right","arrow-alt-circle-up","bell","bell-slash","bookmark","building","calendar","calendar-alt","calendar-check","calendar-minus","calendar-plus","calendar-times","caret-square-down","caret-square-left","caret-square-right","caret-square-up","chart-bar","check-circle","check-square","circle","clipboard","clock","clone","closed-captioning","comment","comment-alt","comments","compass","copy","copyright","credit-card","dot-circle","edit","envelope","envelope-open","eye-slash","file","file-alt","file-archive","file-audio","file-code","file-excel","file-image","file-pdf","file-powerpoint","file-video","file-word","flag","folder","folder-open","frown","futbol","gem","hand-lizard","hand-paper","hand-peace","hand-point-down","hand-point-left","hand-point-right","hand-point-up","hand-pointer","hand-rock","hand-scissors","hand-spock","handshake","hdd","heart","hospital","hourglass","id-badge","id-card","image","images","keyboard","lemon","life-ring","lightbulb","list-alt","map","meh","minus-square","money-bill-alt","moon","newspaper","object-group","object-ungroup","paper-plane","pause-circle","play-circle","plus-square","question-circle","registered","save","share-square","smile","snowflake","square","star","star-half","sticky-note","stop-circle","sun","thumbs-down","thumbs-up","times-circle","trash-alt","user","user-circle","window-close","window-maximize","window-minimize","window-restore","500px","accessible-icon","accusoft","adn","adversal","affiliatetheme","algolia","amazon","amazon-pay","amilia","android","angellist","angrycreative","angular","app-store","app-store-ios","apper","apple","apple-pay","asymmetrik","audible","autoprefixer","avianex","aviato","aws","bandcamp","behance","behance-square","bimobject","bitbucket","bitcoin","bity","black-tie","blackberry","blogger","blogger-b","bluetooth","bluetooth-b","btc","buromobelexperte","buysellads","cc-amazon-pay","cc-amex","cc-apple-pay","cc-diners-club","cc-discover","cc-jcb","cc-mastercard","cc-paypal","cc-stripe","cc-visa","centercode","chrome","cloudscale","cloudsmith","cloudversify","codepen","codiepie","connectdevelop","contao","cpanel","creative-commons","css3","css3-alt","cuttlefish","d-and-d","dashcube","delicious","deploydog","deskpro","deviantart","digg","digital-ocean","discord","discourse","dochub","docker","draft2digital","dribbble","dribbble-square","dropbox","drupal","dyalog","earlybirds","edge","elementor","ember","empire","envira","erlang","ethereum","etsy","expeditedssl","facebook","facebook-f","facebook-messenger","facebook-square","firefox","first-order","firstdraft","flickr","flipboard","fly","font-awesome","font-awesome-alt","font-awesome-flag","fonticons","fonticons-fi","fort-awesome","fort-awesome-alt","forumbee","foursquare","free-code-camp","freebsd","get-pocket","gg","gg-circle","git","git-square","github","github-alt","github-square","gitkraken","gitlab","gitter","glide","glide-g","gofore","goodreads","goodreads-g","google","google-drive","google-play","google-plus","google-plus-g","google-plus-square","google-wallet","gratipay","grav","gripfire","grunt","gulp","hacker-news","hacker-news-square","hips","hire-a-helper","hooli","hotjar","houzz","html5","hubspot","imdb","instagram","internet-explorer","ioxhost","itunes","itunes-note","jenkins","joget","joomla","js","js-square","jsfiddle","keycdn","kickstarter","kickstarter-k","korvue","laravel","lastfm","lastfm-square","leanpub","less","line","linkedin","linkedin-in","linode","linux","lyft","magento","maxcdn","medapps","medium","medium-m","medrt","meetup","microsoft","mix","mixcloud","mizuni","modx","monero","napster","nintendo-switch","node","node-js","npm","ns8","nutritionix","odnoklassniki","odnoklassniki-square","opencart","openid","opera","optin-monster","osi","page4","pagelines","palfed","patreon","paypal","periscope","phabricator","phoenix-framework","php","pied-piper","pied-piper-alt","pied-piper-pp","pinterest","pinterest-p","pinterest-square","playstation","product-hunt","pushed","python","qq","quinscape","quora","ravelry","react","rebel","red-river","reddit","reddit-alien","reddit-square","rendact","renren","replyd","resolving","rocketchat","rockrms","safari","sass","schlix","scribd","searchengin","sellcast","sellsy","servicestack","shirtsinbulk","simplybuilt","sistrix","skyatlas","skype","slack","slack-hash","slideshare","snapchat","snapchat-ghost","snapchat-square","soundcloud","speakap","spotify","stack-exchange","stack-overflow","staylinked","steam","steam-square","steam-symbol","sticker-mule","strava","stripe","stripe-s","studiovinari","stumbleupon","stumbleupon-circle","superpowers","supple","telegram","telegram-plane","tencent-weibo","themeisle","trello","tripadvisor","tumblr","tumblr-square","twitch","twitter","twitter-square","typo3","uber","uikit","uniregistry","untappd","usb","ussunnah","vaadin","viacoin","viadeo","viadeo-square","viber","vimeo","vimeo-square","vimeo-v","vine","vk","vnv","vuejs","weibo","weixin","whatsapp","whatsapp-square","whmcs","wikipedia-w","windows","wordpress","wordpress-simple","wpbeginner","wpexplorer","wpforms","xbox","xing","xing-square","y-combinator","yahoo","yandex","yandex-international","yelp","yoast","youtube","youtube-square"];
+    let _icons = [];
+    for (let i = 0; i < icons.length; i++) {
+        let obj = icons[i];
+        _icons.push({
+            value: icons[i],
+            text: icons[i]
+        })
+    }
     /*endregion*/
 
     /*region html*/
     let html = `<div id="chatBox" class="flex-vert">
                     <div class="connection box">
                         <span class="peer-info"></span>
-                        <select class="peer-icon"></select>
-                        <input class="peer-color" type="color">
-                        <input class="peer-nickname" value="" placeholder="> YOUR NAME">
-                        <button class="peer-login" data-ripple-color="#89669b" >Start p2p System</button>
+                        <input class="peer-id" style="width: 1px;display: none;">
+                        <button class="copy-peer-id">Copy ID</button>
+                        <!--<select class="peer-icon"></select>-->
+                        <!--<input class="peer-color" type="color">-->
                         
                         <input class="target-peer-id" value="" placeholder="> TARGET PEER ID">
                         <button class="connect">Connect</button>
-                        <input class="color" type="color">
+                        <!--<input class="color" type="color">-->
                         <svg id="audio-out-visual" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <defs>
                                 <mask id="mask">
@@ -63,7 +71,7 @@
                             <button class="send-msg"><i class="fab fa-accessible-icon fa-lg"></i></button>
                             <button class="dropBox"><i class="fas fa-cloud-upload-alt"></i> Drag file here</button>
                         </div>
-                        <div class="functions box">
+                        <div class="functions box" style="display: none">
                             <button><i class="fa fa-blind"></i></button>
                             <button><i class="fa fa-bell-slash"></i></button>
                             <button><i class="fa fa-bell"></i></button>
@@ -76,18 +84,36 @@
                         <ul class="peer-list box"></ul>
                     </div>
                     <div class="login">
-                        <div class="box">
-                            <form class="login-register-form">
-                                <p><input name="name" type="text" placeholder=">> User Name"></p>
+                        <div class="box" style="width: 170px; height: 350px; overflow: visible; position: relative; box-sizing: content-box">
+                            <form class="register-form"    style="left: -200px;">
+                                <button  type="button" class="go-to-login">Login&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></button>
+                                <p><input name="name"     type="text"     placeholder=">> User Name" required></p>
                                 <p><input name="password" type="password" placeholder=">> Password"></p>
-                                <button class="login">Login</button>
-                                <p><input name="retype" type="password" placeholder=">> Retype Password"></p>
-                                <p><input name="email" type="email" placeholder=">> E-Mail"></p>
+                                <p><input name="retype"   type="password" placeholder=">> Retype Password"></p>
+                                <p><input name="email"    type="email"    placeholder=">> E-Mail"></p>
                                 <p>
                                     <input name="color" type="color">
                                     <select name="icon" class="icon"></select>
                                 </p>
                                 <button class="register">Register</button>
+                            </form>
+                            <form class="login-form"       style="left: 0px;">
+                                <button type="button" class="go-to-register"    style="float: left">Register</button>
+                                <button type="button" class="go-to-guest-login" style="float: right;">Guest</button>
+                                <br style="clear: both">
+                                <p><input name="name"     type="text"     placeholder=">> User Name" tabindex="1" required></p>
+                                <p><input name="password" type="password" placeholder=">> Password"  tabindex="2" required></p>
+                                <button class="login" tabindex="3" required>Login</button>
+                            </form>
+                            <form class="guest-login-form" style="left: 200px;">
+                                <button type="button" class="go-to-login"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Login</button>
+                                <p>
+                                    <select name="icon" class="peer-icon"></select>
+                                    <input name="color" class="peer-color" type="color">
+                                </p>
+                                <p><input name="name"   class="peer-nickname"  type="text" value="" placeholder=">> YOUR NAME"></p>
+                                <p><input name="target" class="target-peer-id" type="text" value="" placeholder=">> TARGET PEER ID"></p>
+                                <p><button class="guest-login" data-ripple-color="#89669b" >Connect</button></p>
                             </form>
                         </div>
                     </div>
@@ -96,38 +122,69 @@
     /*endregion*/
 
     /*region props*/
+
+    /**
+     * @type {Object} Peer
+     * @arg {string} name
+     */
+    /**
+     * @type {Object} User
+     * @property {string} name
+     * @property {string} icon
+     * @property {string} color
+     */
+
+    // /**
+    //  * @namespace G
+    //  */
+
+    /**
+     *
+     * @namespace G
+     * @property {jQuery|HTMLElement} $chatBox
+     * @property {User} user
+     * @property {boolean} authenticated
+     * @property {Object} chat
+     * @property {Object} UI
+     *
+     * @property {Object} audio
+     * @property {Object} p2p
+     *
+     */
     let G = {
-            $chatBox: $("#chatBox"),
-            chat: {},
-            UI: {},
-            audio: {}
-        },
-        peer,
+        $chatBox: $("#chatBox"),
+        user: null,
+        authenticated: false,
+        chat: {},
+        UI: {},
+        audio: {},
+        p2p: {}
+    };
+    // /**
+    //  * @var {array<Peer>} peers
+    //  */
+    let peer,
         peerID,
         peerNick = "",
         $chatBox = $("#chatBox"),
-        $peerInfo = $("#chatBox .peer-info"),
-        $peerIcon = $("#chatBox .peer-icon"),
-        peerSelect,
-        $peerColor = $("#chatBox .peer-color"),
-        peerColor = $peerColor.colorInput(),
-        $peerNick = $("#chatBox .peer-nickname"),
-        $peerLogin = $("#chatBox .peer-login"),
+        $peerInfo = $("#chatBox .connection .peer-info"),
+        $peerID = $("#chatBox .connection .peer-id"),
+        $copyPeerID = $("#chatBox .connection .copy-peer-id"),
         $peerList = $("#chatBox .peer-list"),
-        $nickname = $("#chatBox .user-nickname"),
         $target = $("#chatBox .target-peer-id"),
-        $connect = $("#chatBox .connect"),
+        $connect = $("#chatBox .connection .connect"),
         $msgBox = $("#chatBox .msg-box"),
         $fileWidgetView = $("#chatBox .file-widget-view"),
         $input = $("#chatBox .chat-send-msg"),
         $dropBox = $("#chatBox .dropBox"),
-        $color = $("#chatBox .connection .color"),
         connectedChatPeers = {},
         connectedFilePeers = {},
+        socketListeners = {},
         peers = {},
         lastLanguage,
         lastColor,
         inputCode,
+        User = null,
         chatConf = {
             label: 'chat',
             serialization: 'json',
@@ -135,6 +192,7 @@
                 nickname: "",
                 color: "",
                 icon: "yelp",
+                member: false,
                 bs: "",//browser id
             }
         },
@@ -181,8 +239,13 @@
             updatePeerList();
         }
     }
-    function startP2P(nickname, color, icon, bs) {
+    function startP2P(nickname, color, icon) {
         return new Promise(function (resolve, reject) {
+            let bs = localStorage.getItem("browserSecret");
+            if (!bs) {
+                let bs = "BS" + guid();
+                localStorage.setItem("browserSecret", bs);
+            }
             localStorage.setItem("chatBox.lastPeerConf", JSON.stringify({
                 nickname: nickname,
                 color: color,
@@ -193,8 +256,7 @@
             chatConf.metadata.icon = icon;
             chatConf.metadata.bs = bs;
             peerNick = nickname;
-            // peer = new Peer({key: 'znx52etk7is8m2t9'});
-            peer = new Peer(nickname, {host: 'localhost', port: 9000, path: '/turn'});
+            peer = new Peer({host: 'localhost', port: 8080, path: '/turn'});//{key: 'znx52etk7is8m2t9'});
             peer.nickname = nickname;
             peer.color = color;
             peer.icon = icon;
@@ -202,11 +264,42 @@
             peer.on('open', function(id) {
                 peerID = id;
                 fireEvent("onPeerStart", peer, peerID, nickname);
+                $peerID.val(peerID);
+                $chatBox[0].style.setProperty("--user-color", color);
+                $peerInfo.html(`<i class="fa fa-${icon}" style=" margin: 0 5px 0 8px"></i> ${nickname}`);
                 resolve();
+                let realOnMessage = peer.socket._socket.onmessage;
+                peer.socket._socket.onmessage = function(event) {
+                    try {
+                        let data = JSON.parse(event.data);
+                        switch(data.type) {
+                            // case "FRIENDS":
+                            //     console.log(data);
+                            //     break;
+                            // case "FRIENDS_UPDATE":
+                            //     console.log(data);
+                            //     break;
+                            default:
+                                if (socketListeners.hasOwnProperty(data.type) ) {
+                                    for (let i = 0; i < socketListeners[data.type].length; i++) {
+                                        let obj = socketListeners[data.type][i];
+                                        socketListeners[data.type][i](data.payload);
+                                    }
+                                }
+                        }
+
+                    } catch(e) {
+                        util.log('Invalid server message', event.data);
+                        return;
+                    }
+                    // self.emit('message', data);
+                    realOnMessage(event);
+                };
             });
             peer.on('error', function(err) {
+                //@todo back to login screen or try reconnecting
                 reject(err);
-                console.log(err);
+                console.dir(err);
             });
             peer.on('connection', function(conn) {
                 if (conn.label === "chat") {
@@ -219,6 +312,7 @@
                             nickname: peerNick,
                             color: lastColor,
                             icon: icon,
+                            member: G.authenticated,
                             bs: bs,
                         });
                         sendPeerUpdate();
@@ -229,6 +323,11 @@
             });
         });
     }
+
+    /**
+     * @param peerID
+     * @returns {Promise<any>}
+     */
     function connectTo(peerID) {
         return new Promise(function (resolve, reject) {
             if (peers.hasOwnProperty(peerID)) {
@@ -277,6 +376,7 @@
                     peers[conn.peer].nickname = data.nickname;
                     peers[conn.peer].color = data.color;
                     peers[conn.peer].icon = data.icon;
+                    peers[conn.peer].member = data.member;
                     peers[conn.peer].bs = data.bs;
                     sendPeerUpdate();
                     updatePeerList();
@@ -302,7 +402,6 @@
         // Receive messages
         let fileMeta;
         conn.on('data', function(data) {
-            console.log('Received', data);
             // If we're getting a file, create a URL for it.
             if (data.constructor === ArrayBuffer) {
                 if (!fileMeta) return;//@todo error
@@ -339,6 +438,16 @@
         });
         log("System", "file connection opened: " + conn.peer);
     }
+    function onCommand(str) {
+        let args = str.match(/\w+|"[^"]+"/g);
+        let com = args[0].toLowerCase();
+        if (!commands.hasOwnProperty(com) ) {
+            //command not found!
+            error("Command '" + com + "' not found!");
+            return;
+        }
+        commands[com].onCommand.call(null, com, ...args.slice(1));
+    }
     function sendPeerUpdate() {
         let updateList = [];
         for (let peer in peers) {
@@ -364,23 +473,77 @@
         delete peers[id];
         delete connectedChatPeers[id];
     }
+    function closeAll() {
+        eachActiveConnection(function(c) {
+            c.close();
+        });
+    }
+    function listenToSocket(type, fn) {
+        if (!socketListeners.hasOwnProperty(type)) socketListeners[type] = [];
+        socketListeners[type].push(fn);
+    }
+    function isConnectedTo(peerID) {
+        return connectedChatPeers.hasOwnProperty(peerID);
+    }
+    function sendToPeer(peerID, data) {
+        let peer = getPeer(peerID);
+        if (peer) {
+            connectedChatPeers[peerID].send(data);
+        } else {
+            connectTo(peerID)
+                .then(function() {
+                    connectedChatPeers[peerID].send(data);
+                });
+        }
+    }
+    G.p2p.listenToSocket = listenToSocket;
+    /**
+     * @memberOf G.p2p
+     * @param {string} id peerID
+     * @returns {string} nickname
+     */
     function peerToNick(id) {
         if(peers.hasOwnProperty(id)) {
             return peers[id].nickname;
         }
         return id;
     }
+    G.p2p.peerToNick = peerToNick;
+
+    /**
+     * @memberOf G.p2p
+     * @param {string} nick
+     * @returns {string} peerID
+     */
     function nickToPeerID(nick) {
         for (let peer in peers) {
             if (peers[peer].nickname === nick) return peer;
         }
         return false;
     }
+    G.p2p.nickToPeerID = nickToPeerID;
+
+    /**
+     * @memberOf G.p2p
+     * @param {string} peerID
+     * @returns {Peer|boolean}
+     */
     function getPeer(peerID) {
         if(peers.hasOwnProperty(peerID)) {
             return peers[peerID];
         }
+        return false;
     }
+    G.p2p.getPeer = getPeer;
+
+    function socketSend(type, data) {
+        peer.socket._socket.send(JSON.stringify({
+            type: type,
+            payload: data
+        }));
+    }
+    G.p2p.socketSend = socketSend;
+
     function log(...args) {
         console.log(...args);
     }
@@ -399,7 +562,9 @@
             }
         }
     }
-    //ui
+    /*endregion*/
+
+    /*region ui*/
     function updatePeerList() {
         // $("<li/>", {
         //     click: function(){},
@@ -452,7 +617,7 @@
                         effectRunning = false;
                         runEffect();
                     }
-                },500);
+                },1000);
                 break;
             case "bla":
                 break;
@@ -461,17 +626,104 @@
     /*endregion*/
 
     /*region chat */
+    function sendChatMsg(msg) {
+        console.log(G.friends.selected());
+        let targets = G.friends.selected();
+        if (targets.length < 1) {
+            eachActiveChatConnection(function (c) {
+                if (c.label === 'chat') {
+                    c.send({
+                        com: "chat",
+                        msg: msg
+                    });
+                }
+            });
+            write(peer, msg);
+        } else {
+            //send to selected friends
+            for (let i = 0; i < targets.length; i++) {
+                let target = targets[i];
+                if (target.online) {
+                    //send
+                    sendToPeer(target.peerID, {
+                        com: "chat",
+                        msg: msg
+                    });
+                }
+            }
+        }
+
+        $('#text').val('');
+        $('#text').focus();
+    }
+    function sendCode(language, code, id = false) {
+        let codeId = G.codeHistory.push({
+            code: code,
+            language: language
+        });
+        if (!id) {
+            eachActiveChatConnection(function(c) {
+                if (c.label === 'chat') {
+                    c.send({
+                        com: "code",
+                        code: code,
+                        language: language
+                    });
+                    writeWidget("code", `<span>CODE: ${language}</span>`)
+                        .data("id", codeId);
+                }
+            });
+        } else {
+            //@todo send to this one
+        }
+    }
+    function sendFile(file, id = false) {
+        if (!id) {
+            eachActiveChatConnection(function (conn, fileConn) {
+                if (fileConn.label === 'file') {
+                    fileConn.send(JSON.stringify({
+                        lastModified: file.lastModified,
+                        lastModifiedDate: file.lastModifiedDate,
+                        name: file.name,
+                        size: file.size,
+                        type: file.type,
+                    }));
+                    fileConn.send(file);
+                    writeWidget("file-send", `<span>FILE SEND</span>`);
+                }
+            });
+        } else {
+            //@todo send to this one
+        }
+    }
+    /**
+     * @memberOf G.chat
+     * @param {object} peer
+     * @param {string} text
+     */
     function write(peer, text) {
         $msgBox.prepend('<li><span class="user" style="color:'+ peer.color +'">[' + peer.nickname + '] </span>' + text + '</li>');
     }
+    G.chat.write = write;
+    /**
+     * @memberOf G.chat
+     * @param {string} msg error message
+     */
     function error(msg) {
         $msgBox.prepend('<li><span class="error">[ERROR] </span>' + msg + '</li>');
     }
+    G.chat.error = error;
+    /**
+     * @memberOf G.chat
+     * @param {string} name
+     * @param {string} html
+     */
     function writeWidget(name, html) {
         let $element = $( `<li class="inline-widget" name="${name}">` + html + '</li>');
         $msgBox.prepend($element);
         return $element;
     }
+    G.chat.writeWidget = writeWidget;
     /*endregion*/
 
     /*region utils */
@@ -552,79 +804,11 @@
     }
     /*endregion*/
 
-    function closeAll() {
-        eachActiveConnection(function(c) {
-            c.close();
-        });
-    }
-    function sendChatMsg(msg) {
-        eachActiveChatConnection(function(c) {
-            if (c.label === 'chat') {
-                c.send({
-                    com: "chat",
-                    msg: msg
-                });
-            }
-        });
-        write(peer, msg);
-        $('#text').val('');
-        $('#text').focus();
-    }
-    function sendCode(language, code, id = false) {
-        let codeId = G.codeHistory.push({
-            code: code,
-            language: language
-        });
-        if (!id) {
-            eachActiveChatConnection(function(c) {
-                if (c.label === 'chat') {
-                    c.send({
-                        com: "code",
-                        code: code,
-                        language: language
-                    });
-                    writeWidget("code", `<span>CODE: ${language}</span>`)
-                        .data("id", codeId);
-                }
-            });
-        } else {
-            //@todo send to this one
-        }
-    }
-    function sendFile(file, id = false) {
-        if (!id) {
-            eachActiveChatConnection(function (conn, fileConn) {
-                if (fileConn.label === 'file') {
-                    fileConn.send(JSON.stringify({
-                        lastModified: file.lastModified,
-                        lastModifiedDate: file.lastModifiedDate,
-                        name: file.name,
-                        size: file.size,
-                        type: file.type,
-                    }));
-                    fileConn.send(file);
-                    writeWidget("file-send", `<span>FILE SEND</span>`);
-                }
-            });
-        } else {
-            //@todo send to this one
-        }
-    }
-    function onCommand(str) {
-        let args = str.match(/\w+|"[^"]+"/g);
-        let com = args[0];
-        if (!commands.hasOwnProperty(com) ) {
-            //command not found!
-            error("Command '" + com + "' not found!");
-            return;
-        }
-        commands[com].run.apply(null, args.slice(1));
-    }
     function setColor(hexCode) {
         localStorage.setItem("lastColor", hexCode);
         lastColor = hexCode;
         let rgb = hexToRgb(hexCode);
-        $color.val(hexCode);
+        fireEvent("colorChanged", hexCode, rgb);
         $chatBox[0].style.setProperty("--color", hexCode);
         $chatBox[0].style.setProperty("--colorRGB", rgb.r + ", " + rgb.g + ", " + rgb.b);
     }
@@ -634,16 +818,14 @@
     }
 
     /*region audio*/
-    //audio
     let sounds = new Map();
     let channels = {};
-    let audioContext = new AudioContext();
+    let audioContext = G.audio.audioContext = new AudioContext();
     let mainGain = audioContext.createGain();
     mainGain.connect(audioContext.destination);
     // mainGain.gain.value = 0.5;
     // gainNode.gain.setTargetAtTime(1.0, audioCtx.currentTime + 1, 0.5);
     visualizeAudioOut();
-    G.audio.audioContext = audioContext;
     function loadSound(name, url) {
         let request = new XMLHttpRequest();
         request.open('GET', url, true);
@@ -773,13 +955,27 @@
             this.isOpen = true;
         }
     }
+
+    /**
+     *
+     * @param id
+     * @param {WidgetRequestCallback} fn
+     * @constructor
+     */
     function Widget(id, fn) {
         if (widgets.hasOwnProperty(id)) throw new Error("widget id already taken!");
         let widget = new BaseWidget();
         fn.call(widget, G);
         if (widget.hasOwnProperty("command") ) {
-            if (commands.hasOwnProperty(widget.command)) throw new Error("Command '" + widget.command + "' exists already!");
-            commands[widget.command] = widget;
+            let coms = widget.command;
+            if (typeof widget.command === "string"){
+                coms = [widget.command];
+            }
+            for (let com of coms) {
+                let lcom = com.toLowerCase();
+                if (commands.hasOwnProperty(lcom)) throw new Error("Command '" + com + "' exists already!");
+                commands[lcom] = widget;
+            }
         }
         if (widget.hasOwnProperty("fileType") ) {
             if (fileTypes.has(widget.fileType)) throw new Error("FileType '" + widget.fileType + "' exists already!");
@@ -787,6 +983,15 @@
         }
         widgets[id] = widget;
     }
+    window.Widget = Widget;
+    /**
+     * This callback is displayed as part of the Requester class.
+     * @callback WidgetRequestCallback
+     * @param {G} G
+     */
+    function _re(G) {}
+
+
     function fireEvent(name, ...args) {
         for (let widget in widgets) {
             widget = widgets[widget];
@@ -837,56 +1042,19 @@
         };
         return Template;
     }
-    function connectPeer() {
-        let nickname = $peerNick.val();
-        if (!nickname || nickname === "") {
-            error("Please select Nickname!");
-            return;
-        }
-        if (!peer) {
-            $peerLogin.text("Loading...");
-            let bs = localStorage.getItem("browserSecret");
-            if (!bs) {
-                let bs = "BS" + guid();
-                localStorage.setItem("browserSecret", bs);
-            }
-            let icon = peerSelect.getValue();
-            let color = peerColor.getColor();
-            startP2P(nickname, color, icon, bs).then(()=>{
-                $peerLogin.text("Copy ID");
-                $peerNick.val(peerID);
-                $peerNick.hide();//css("width", "0px");
-                $peerColor.hide();
-                $peerIcon.hide();
-                $chatBox[0].style.setProperty("--user-color", color);
-                $peerInfo.html(`<i class="fa fa-${icon}" style=" margin: 0 5px 0 8px"></i> ${nickname}`);
-                $peerInfo.show();
-            }, (err) => {
-                console.log("//@todo handle connection error");
-                throw err;
-            });
-        } else {
-            //copy
-            let copyText = $peerNick[0];
-            /* Select the text field */
-            $peerNick.show();
-            copyText.select();
-            /* Copy the text inside the text field */
-            document.execCommand("Copy");
-            $peerNick.hide();
-            /* Alert the copied text */
-        }
+    function copyPeerID() {
+        //copy
+        let copyText = $peerID[0];
+        /* Select the text field */
+        $peerID.show();
+        copyText.select();
+        /* Copy the text inside the text field */
+        document.execCommand("Copy");
+        $peerID.hide();
     }
-    G.peerToNick = peerToNick;
-    G.nickToPeerID = nickToPeerID;
-    G.nickToPeerID = nickToPeerID;
-    G.getPeer = getPeer;
-    G.chat.write = write;
-    G.chat.error = error;
-    G.chat.writeWidget = writeWidget;
     //ui events
     function initUIevents() {
-        $peerLogin.on('click', connectPeer);
+        $copyPeerID.on('click', copyPeerID);
         $connect.on('click', function(e) {
             let target = $target.val();
             if (!target || target === "") {
@@ -939,33 +1107,164 @@
             console.log(file)
             sendFile(file);
         });
-        $color.on("change", function(e) {
-            setColor(e.target.value);
-        });
     }
     function initLoginView() {
-        let $form = $(".login .login-register-form", G.$chatBox);
+        let $loginForm = $(".login .login-form", G.$chatBox);
+        let $registerForm = $(".login .register-form", G.$chatBox);
+        let $guestLoginForm = $(".login .guest-login-form", G.$chatBox);
+        let aniOpt = {
+            duration: 1000,
+            easing: "easeInOutCirc",
+            complete: function() {
+                // $(".login .register-form", G.$chatBox);
+            }
+        };
+        //check login state
+        $.ajax({
+            url: "/howiam",
+            type: "GET",
+            dataType: 'json',
+        }).then((res) => {
+            if (res.code === 1) {
+                //set user
+                G.user = res.payload;
+                G.authenticated = true;
+                // setColor(user.color);
+                let bs = localStorage.getItem("browserSecret");
+                if (!bs) {
+                    let bs = "BS" + guid();
+                    localStorage.setItem("browserSecret", bs);
+                }
+                startP2P(G.user.name, G.user.color, G.user.icon, bs).then(() => {
+                    hideLogin();
+                }, (err) => {
+                    console.log("//@todo handle connection error");
+                    throw err;
+                });
+                //hide overlay
+                hideLogin();
+            } else {
+                //show login
+                $(".login .box", G.$chatBox).css("opacity", 0);
+                $(".login .box", G.$chatBox).animate({
+                        opacity: 1,
+                    }, 3000, function() { });
+            }
+        }, (err) => { throw err });
 
-        //prepare icon select
-        // for (let i = 0; i < icons.length - 331; i++) {
-        //     $peerIcon.append($(`<option value="${icons[i]}" data-icon="${icons[i]}" data-hidden-text="${icons[i]}"></option>`));
-        // }
 
-        function myRenderFunction(option) {
-            return `<i class="fa fa-${option}"></i><span></span>`;
+        $('input[name="name"]', $loginForm).focus();
+
+
+        $.easing.easeInOutCirc = function (x, t, b, c, d) {
+            if ((t/=d/2) < 1) return -c/2 * (Math.sqrt(1 - t*t) - 1) + b;
+            return c/2 * (Math.sqrt(1 - (t-=2)*t) + 1) + b;
+        };
+        $(".login .go-to-guest-login", G.$chatBox).click(function (e) {
+            //show guest login
+            $guestLoginForm.show();
+            $(".peer-nickname", $guestLoginForm).focus();
+            $registerForm.animate({
+                left: "-400px",
+            }, aniOpt);
+            $loginForm.animate({
+                left: "-200px",
+            }, aniOpt);
+            $guestLoginForm.animate({
+                left: "0px",
+            }, aniOpt);
+            Promise.all([$guestLoginForm.promise(), $loginForm.promise(), $registerForm.promise()]).then(() => {
+                //set focus
+                $registerForm.hide();
+                $loginForm.hide();
+            });
+        });
+        $(".login .go-to-register", G.$chatBox).click(function (e) {
+            //show guest login
+            $registerForm.show();
+            $('input[name="name"]', $registerForm).focus();
+            $registerForm.animate({
+                left: "0px",
+            }, aniOpt);
+            $loginForm.animate({
+                left: "200px",
+            }, aniOpt);
+            $guestLoginForm.animate({
+                left: "400px",
+            }, aniOpt);
+            Promise.all([$guestLoginForm.promise(), $loginForm.promise(), $registerForm.promise()]).then(() => {
+                //set focus
+                $loginForm.hide();
+                $guestLoginForm.hide();
+            });
+        });
+        $(".login .go-to-login", G.$chatBox).click(function (e) {
+            //show login
+            $loginForm.show();
+            $('input[name="name"]', $loginForm).focus();
+            $registerForm.animate({
+                left: "-200px",
+            }, aniOpt);
+            $loginForm.animate({
+                left: "0px",
+            }, aniOpt);
+            $guestLoginForm.animate({
+                left: "200px",
+            }, aniOpt);
+            Promise.all([$guestLoginForm.promise(), $loginForm.promise(), $registerForm.promise()]).then(() => {
+                //set focus
+                $registerForm.hide();
+                $guestLoginForm.hide();
+            });
+        });
+        //form
+        function hideLogin() {
+            $(".login", G.$chatBox).css("pointer-events", "none");
+            if ($(".login .box", G.$chatBox).css("opacity") > 0) {
+                $(".login .box", G.$chatBox).animate({
+                        opacity: 0,
+                    }, 1000, function () {
+                });
+            }
+            $(".login", G.$chatBox).animate({
+                opacity: 0,
+            }, 2000, function() {
+                $(".login", G.$chatBox)
+                    .hide()
+                    .css("opacity", 1);
+                $(".login .box", G.$chatBox)
+                    .css("opacity", 0)
+                    .removeClass("loading");
+            });
         }
-        peerSelect = new Selectr("#chatBox .login .icon", {
+        function myRenderFunction(option) {
+            return `<i class="fa fa-${option.value}"></i><span></span>`;
+        }
+        let regIconSelect = new Selectr("#chatBox .login .register-form .icon", {
             renderSelection: myRenderFunction,
             renderOption: myRenderFunction,
             searchable: false,
             width: 50,
             customClass: 'icon',
-            data: icons,
-
+            data: _icons,
         });
-
-        $("button.login", $form).click((e) => {
-            let data = $form.serializeArray();
+        let guestIconSelect = new Selectr("#chatBox .login .guest-login-form .peer-icon", {
+            renderSelection: myRenderFunction,
+            renderOption: myRenderFunction,
+            searchable: false,
+            width: 50,
+            customClass: 'icon',
+            data: _icons,
+        });
+        regIconSelect.setValue(icons[Math.floor(Math.random() * icons.length)]);
+        guestIconSelect.setValue(icons[Math.floor(Math.random() * icons.length)]);
+        let color = randomColor();
+        $('input[type="color"]', $registerForm).val(color);
+        $('input[type="color"]', $guestLoginForm).val(color);
+        // icons[Math.floor(Math.random() * icons.length)]
+        $("button.login", $loginForm).click((e) => {
+            let data = $loginForm.serializeArray();
+            $(".login .box", G.$chatBox).addClass("loading");
             //send login
             //@todo validate
             $.ajax({
@@ -978,27 +1277,82 @@
                     pass: data[1].value
                 })
             }).then((res) => {
-                console.log(res)
+                if (res.code === 1) {
+                    G.user = res.payload;
+                    G.authenticated = true;
+                    // setColor(user.color);
+                    startP2P(G.user.name, G.user.color, G.user.icon).then(() => {
+                        hideLogin();
+                    }, (err) => {
+                        console.log("//@todo handle connection error");
+                        throw err;
+                    });
+                }
             }, (err) => { throw err });
         });
-        $("button.register", $form).click((e) => {
-
-            let data = $form.serializeArray();
+        $("button.register", $registerForm).click((e) => {
+            let data = $registerForm.serializeArray();
+            let icon = regIconSelect.getValue();
             //send register
             //@todo validate
+            if (data[1].value !== data[2].value) {
+                //@todo passwords do not match
+                return;
+            }
             $.ajax({
                 url: "/register",
                 type: "POST",
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
                 data: JSON.stringify({
-                    username: data[0].value,
-                    pass: data[1].value
+                    name: data[0].value,
+                    password: data[1].value,
+                    email: data[3].value,
+                    color: data[4].value,
+                    icon: icon,
                 })
             }).then((res) => {
-                console.log(res)
+                if (res.code === 1) {
+                    //ok -> login
+
+                    $("button.login", $registerForm).click()
+                }
             }, (err) => { throw err });
         });
+        $("button.guest-login", $guestLoginForm).click((e) => {
+            let data = $guestLoginForm.serializeArray();
+            //@todo validate
+            let icon = data[0].value,
+                color = data[1].value,
+                name = data[2].value,
+                target = data[3].value;
+
+            setColor(color);
+            let bs = localStorage.getItem("browserSecret");
+            startP2P(name, color, icon).then(() => {
+                hideLogin();
+            }, (err) => {
+                console.log("//@todo handle connection error");
+                throw err;
+            });
+        });
+
+        // //last peer conf
+        // let lastPeerConf = JSON.parse(localStorage.getItem("chatBox.lastPeerConf"));
+        // if (lastPeerConf) {
+        //     //set color/nick/icon
+        //     $peerNick.val(lastPeerConf.nickname);
+        //     peerColor.setColor(lastPeerConf.color);
+        //     peerSelect.setValue(lastPeerConf.icon);
+        // } else {
+        //     //set random color and icon
+        //     let color = "#";
+        //     while(color.length < 6) {
+        //         color += Math.floor(Math.max(Math.random()*255, 80)).toString(16);
+        //     }
+        //     peerColor.setColor(color);
+        //     peerSelect.setValue(icons[Math.floor(Math.random() * icons.length)]);
+        // }
     }
     $(document).ready(function() {
         initLoginView();
@@ -1007,44 +1361,11 @@
         if (!lastColor) {
             lastColor = randomColor();
             localStorage.setItem("lastColor", lastColor);
+            setColor(lastColor);//@todo erst setzten wenn man einloggt, auf user farbe, und dann ein hallo USER zeigen und dann erst die farbe der letzten einstellung angleichen
         }
-        setColor(lastColor);
-
-        for (let i = 0; i < icons.length - 331; i++) {
-            $peerIcon.append($(`<option value="${icons[i]}" data-icon="${icons[i]}" data-hidden-text="${icons[i]}"></option>`));
-        }
-
-        peerSelect = new Selectr("#chatBox select.peer-icon", {
-            renderSelection: myRenderFunction,
-            renderOption: myRenderFunction,
-            searchable: false,
-            width: 50,
-            customClass: 'peer-icon-select'
-        });
-        $peerIcon = $(".peer-icon-select", G.$chatBox);
-        //last peer conf
-        let lastPeerConf = JSON.parse(localStorage.getItem("chatBox.lastPeerConf"));
-        if (lastPeerConf) {
-            //set color/nick/icon
-            $peerNick.val(lastPeerConf.nickname);
-            peerColor.setColor(lastPeerConf.color);
-            peerSelect.setValue(lastPeerConf.icon);
-        } else {
-            //set random color and icon
-            let color = "#";
-            while(color.length < 6) {
-                color += Math.floor(Math.max(Math.random()*255, 80)).toString(16);
-            }
-            peerColor.setColor(color);
-            peerSelect.setValue(icons[Math.floor(Math.random() * icons.length)]);
-        }
-
+        // setColor(lastColor);
         initUIevents();
         fireEvent("init", G.$chatBox);
-
-        function myRenderFunction(option) {
-            return `<i class="fa fa-${$(option).data("icon")}"></i><span>${option.innerHtml || ""}</span>`;
-        }
     });
     // window.addEventListener('load', startup, false);
     window.onunload = window.onbeforeunload = function(e) {
@@ -1080,15 +1401,16 @@
         }, 2000);
     });
 
-    // Widget("config", function(G) {
-    //
-    //     // let _conf = {};
-    //     this.init = () => {
-    //         //load saved config
-    //     };
-    //     this.onCode = (data) => {};
-    // });
+    Widget("config", function(G) {
 
+        // let _conf = {};
+        this.init = () => {
+            // $color.on("change", function(e) {
+            //     setColor(e.target.value);
+            // });
+        };
+        this.onCode = (data) => {};
+    });
     Widget("code", function(G) {
         let receivedCodeViewFlask;
         let codeViewFlask;
@@ -1186,7 +1508,7 @@
             //         <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient)" mask="url(#mask)"></rect>
             //     </svg>`
         };
-        this.run = (target, msg) => {
+        this.onCommand = (com, target, msg) => {
             G.chat.writeWidget("call", `<span>CALLING ${target}</span>`);
             call(target).then(() => {
                 console.log("nice")
@@ -1237,7 +1559,7 @@
         };
         function call(nick) {
             return new Promise(function (resolve, reject) {
-                let targetPeer = G.nickToPeerID(nick);
+                let targetPeer = G.p2p.nickToPeerID(nick);
                 if (targetPeer === false) {
                     reject("Peer does not exists!");
                     return;

@@ -44,7 +44,6 @@ function ExpressPeerServer(server, options) {
     app._setCleanupIntervals();
     app._initializeWSS(server);
   });
-
   return app;
 }
 
