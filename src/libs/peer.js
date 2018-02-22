@@ -1213,15 +1213,8 @@ function Socket(secure, host, port, path, key) {
 
   var httpProtocol = secure ? 'https://' : 'http://';
   var wsProtocol = secure ? 'wss://' : 'ws://';
-  // if (port === -1) {
-  //     this._httpUrl = httpProtocol + host + path + key;
-  //     this._wsUrl = wsProtocol + host + path + 'peerjs?key=' + key;
-  // } else {
-      this._httpUrl = httpProtocol + host + ':' + port + path + key;
-      this._wsUrl = wsProtocol + host + ':' + port + path + 'peerjs?key=' + key;
-  // }
-  console.log(this._httpUrl)
-  console.log(this._wsUrl)
+    this._httpUrl = httpProtocol + host + ':' + port + path + key;
+    this._wsUrl = wsProtocol + host + ':' + port + path + 'peerjs?key=' + key;
 }
 
 util.inherits(Socket, EventEmitter);
