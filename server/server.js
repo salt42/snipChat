@@ -296,8 +296,8 @@ app.use(express.json());
 app.use('/turn', ExpressPeerServer(server, {}));
 
 app.get('/', function(req, res, next) {
-    res.send(port +" :: "+ ip +" :: "+ dataPath);
-    // res.sendFile(path.join(__dirname + '/../src/chat.html'));
+    // res.send(port +" :: "+ ip +" :: "+ dataPath);
+    res.sendFile(path.join(__dirname + '/../src/chat.html'));
 });
 app.post('/register', function (req, res, next) {
     //@todo validate
