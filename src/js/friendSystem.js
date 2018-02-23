@@ -14,13 +14,41 @@ Widget("friendSystem", function(G) {
      */
     G.friends.selected = function () {
         let selection = [];
-        console.log();
         $("li", $friendList).each(function(index, ele) {
             if ($(ele).hasClass("selected")) {
                 selection.push($(ele).data("friend"));
             }
         });
         return selection;
+    };
+    let origBroadcast = G.p2p.broadcast;
+    G.p2p.broadcast = function (fn) {
+        let targets = G.friends.selected();
+        let targetNames = [];
+        // console.log("targets:", targets);
+        if (targets.length < 1) {
+            //to all connected peers
+            // origBroadcast(fn);
+            return;
+        }
+        let waitOn = [];
+        for (let i = 0; i < targets.length; i++) {
+            let user = targets[i];
+            targetNames.push(user.name);
+            //@todo if offline -> send offline msg
+            if (user.online && user.peerID && user.peerID !== "" && !G.p2p.isConnected(user.peerID)) {
+                // console.log("wait on:", user);
+                waitOn.push(G.p2p.connectTo(user.peerID));
+            }
+        }
+        Promise.all(waitOn).then(() => {
+            // console.log("broadcast");
+            origBroadcast(function (c, f, p) {
+                if (targetNames.indexOf(p.nickname) > -1) {
+                    fn(c, f, p);
+                }
+            });
+        });
     };
     this.init = function () {
         G.$chatBox.children(".bottom").prepend($friendList);
@@ -67,18 +95,23 @@ Widget("friendSystem", function(G) {
         }
     };
     this.socket_friendsUpdate = (data) => {
-        console.log("update", data)
+        console.log("friends update")
+        console.log(data)
         _friends = data;
         renderList();
     };
     this.socket_friendsStateChange = (data) => {
+        console.log("friends state change")
         console.log(data)
+        let newEntry = true;
         for (let i = 0; i < _friends.length; i++) {
-            if (_friends[i].name = data.name) {
+            if (_friends[i].name === data.name) {
                 _friends[i] = data;
+                newEntry = false;
                 break;
             }
         }
+        if (newEntry) _friends.push(data);
         renderList();
     };
     this.socket_friendRequest = (data) => {

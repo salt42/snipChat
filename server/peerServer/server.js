@@ -50,7 +50,7 @@ app._initializeWSS = function (server) {
             socket.close();
             return;
         }
-        sessionParser(socket.upgradeReq, {}, function(){
+        sessionParser(socket.upgradeReq, {}, function() {
             let session = socket.session = socket.upgradeReq.session;
 
             if (!self._clients[key] || !self._clients[key][id]) {
@@ -69,7 +69,9 @@ app._initializeWSS = function (server) {
             } else {
                 self._configureWS(socket, key, id, token);
             }
-            UserManager.onConnect(socket);
+            setTimeout(() => {
+                UserManager.onConnect(socket);
+            }, 200);
         });
 
     });

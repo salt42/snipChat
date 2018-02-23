@@ -5,6 +5,7 @@
     --color-high: #aeff46; /* text highlight color */
     --color-use: #8bff87; /* color shows interactivity*/
     --color-response: #8bff87; /* on user input */
+    --color-error: #ff3c47; /* on user input */
     --colorRGB: 255, 255, 255; /*  */
     --color-instruct: rgba(var(--colorRGB), 0.3);
     --color-border: var(--color-instruct);
@@ -461,7 +462,26 @@
     width: 50px;
     height: 24px;
 }
-#chatBox>.login .box {}
+#chatBox>.login .box .message-box {
+    display: none;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    text-align: center;
+    vertical-align: center;
+    height: 100%;
+    background-color: var(--bg-color-1);
+}
+#chatBox>.login .box .message-box.error {
+    color: var(--color-error);
+}
+#chatBox>.login .box .message-box .title {
+    margin-top: 110px;
+}
+#chatBox>.login .box .message-box .message {
+}
 /*endregion*/
 
 /*region >> ripple effect */

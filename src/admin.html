@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+    <title>SnipChat</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link rel="stylesheet" href="/libs/jsonForm/jsonForm.css">
+    <script src="/libs/jsonForm/jsonForm.js"></script>
+
+    <script>
+        $(function() {
+            listUser(0, 100);
+        });
+        function getUser() {
+            let userName = $("#user-search").val();
+            $("#user-search").val("");
+            $.ajax({
+                url: "/admin/user/get/" + userName,
+                dataType: "json"
+            }).then((data) => {
+                let form = new jsonForm($("#user-details")[0], data, {
+                    meta: {}
+                });
+            });
+        }
+        function listUser(start, end) {
+            $.ajax({
+                url: "/admin/user/list/" + start + "/" + end,
+                dataType: "json"
+            }).then((data) => {
+                let form = new jsonForm($("#user-list")[0], data, {
+                    meta: {}
+                });
+            });
+        }
+    </script>
+    <style>
+        .user-details { float: left; }
+        .users { float: left; }
+    </style>
+</head>
+<body>
+    <div class="user-details">
+        <input id="user-search" type="text" onkeyup="(event.keyCode === 13) ? getUser(): 1;">
+        <button onclick="getUser()">get user</button>
+        <div id="user-details" style="width: 400px;"></div>
+    </div>
+    <div class="users">
+        <div id="user-list" style="width: 400px;"></div>
+    </div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 80,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
     dataPath = process.env.OPENSHIFT_DATA_DIR || __dirname + '/../';
     // mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
@@ -30,9 +30,9 @@ let server = app.listen(port);
 let friendRequests = [];
 let friendRequestsHash = [];
 global.UserManager = {
-    find(what) {
+    find(what, projection = {}) {
         return new Promise((resolve, reject) => {
-            db.find(what, (err, docs) => {
+            db.find(what, projection, (err, docs) => {
                 if (err) {
                     reject(err);
                     return;
@@ -76,7 +76,6 @@ global.UserManager = {
             online: true,
             peerID: socket.session.user.peerID,
         };
-        console.log(userState);
         //say friends i'm online
         let friends = socket.session.user.friends;
         for (let i = 0; i < server.wss.clients.length; i++) {
@@ -121,6 +120,8 @@ global.UserManager = {
         let user = socket.session.user;
         let proms = [];
 
+        console.log("update friends of %s", user.username);
+        console.log(user.friends);
         for (let friendName of user.friends) {
             //check if friend is online
             let friend = {
@@ -216,8 +217,9 @@ global.UserManager = {
         //save friendship in both users
         UserManager.addFriend(request.srcUser, request.targetUser.username);
         UserManager.addFriend(request.targetUser, request.srcUser.username);
-
+        socket.session.user.friends.push(request.srcUser.username);
         UserManager.ifUserOnline(request.srcUser.username, function(user, userSocket) {
+            user.friends.push(request.targetUser.username);
             UserManager.friendsUpdate(userSocket);
         });
         UserManager.friendsUpdate(socket);
@@ -268,6 +270,13 @@ function AUTH(req, res, next) {
         res.send("Go away!")
     } else {
         next();
+    }
+}
+function AUTH_ADMIN(req, res, next) {
+    if (req.session.authenticated && req.session.user.username === "salt") {
+        next();
+    } else {
+        res.send("Go away!");
     }
 }
 app.use(express.static(path.join(__dirname + '/../src')));
@@ -379,16 +388,36 @@ app.get("/howiam", function(req, res, next) {
         });
     }
 });
-// app.get("/friends/:name", function(req, res, next) {
-//     UserManager.find({username: req.params.name}).then((user) => {
-//         res.json(user);
-//     });
-// });
-// app.get("/debug", function(req, res, next) {
-//     console.dir(app)
-//     console.log(server)
-//     res.json("debugging");
-// });
+app.get("/admin", AUTH_ADMIN, function(req, res, next) {
+    res.sendFile(path.join(__dirname + '/../src/admin.html'));
+});
+app.get("/admin/user/get/:name", AUTH_ADMIN, function(req, res, next) {
+    global.UserManager.getUser(req.params.name)
+        .then((user) => {
+            if (!user) {
+                res.json({
+                    error: "user not found"
+                });
+                return;
+            }
+            res.json({
+                user: {
+                    name: user.username,
+                    icon: user.icon,
+                    color: user.color,
+                    email: user.email,
+                    registerDate: user.registerDate,
+                    friends: user.friends,
+                }
+            });
+        });
+});
+app.get("/admin/user/list/:start/:end", AUTH_ADMIN, function(req, res, next) {
+    global.UserManager.find({}, {username: 1, _id: 0}).then((data) => {
+        res.json(data);
+    })
+});
+
 //404
 app.use(function (req, res, next) {
     res.status(404).send("Sorry can't find that!")

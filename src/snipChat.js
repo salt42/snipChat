@@ -85,7 +85,7 @@
                     </div>
                     <div class="login">
                         <div class="box" style="width: 170px; height: 350px; overflow: hidden; position: relative; box-sizing: content-box">
-                            <form class="register-form"    style="left: -200px;">
+                            <form class="register-form"    style="left: -200px; display: none;">
                                 <button  type="button" class="go-to-login">Login&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></button>
                                 <p><input name="name"     type="text"     placeholder=">> User Name" required></p>
                                 <p><input name="password" type="password" placeholder=">> Password"></p>
@@ -105,7 +105,7 @@
                                 <p><input name="password" type="password" placeholder=">> Password"  tabindex="2" required></p>
                                 <button class="login" tabindex="3" required>Login</button>
                             </form>
-                            <form class="guest-login-form" style="left: 200px;">
+                            <form class="guest-login-form" style="left: 200px; display: none;">
                                 <button type="button" class="go-to-login"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Login</button>
                                 <p>
                                     <select name="icon" class="peer-icon"></select>
@@ -115,6 +115,7 @@
                                 <p><input name="target" class="target-peer-id" type="text" value="" placeholder=">> TARGET PEER ID"></p>
                                 <p><button class="guest-login" data-ripple-color="#89669b" >Connect</button></p>
                             </form>
+                            <div class="message-box"><h3 class="title"></h3><p class="message"></p></div>
                         </div>
                     </div>
                 </div>`;
@@ -124,19 +125,13 @@
     /*region props*/
 
     /**
-     * @type {Object} Peer
-     * @arg {string} name
-     */
-    /**
      * @type {Object} User
      * @property {string} name
      * @property {string} icon
      * @property {string} color
+     * @property {string} member
+     * @property {string} friend
      */
-
-    // /**
-    //  * @namespace G
-    //  */
 
     /**
      *
@@ -160,9 +155,6 @@
         audio: {},
         p2p: {}
     };
-    // /**
-    //  * @var {array<Peer>} peers
-    //  */
     let peer,
         peerID,
         peerNick = "",
@@ -234,7 +226,7 @@
                 nickname: nickname,
                 peer: peerID,
                 icon: icon,
-                color: color
+                color: color,
             };
             updatePeerList();
         }
@@ -297,8 +289,8 @@
                 };
             });
             peer.on('error', function(err) {
-                //@todo back to login screen or try reconnecting
                 reject(err);
+                //@todo show login
                 console.dir(err);
             });
             peer.on('connection', function(conn) {
@@ -310,12 +302,12 @@
                         conn.send({
                             com: "handshake",
                             nickname: peerNick,
-                            color: lastColor,
+                            color: color,
                             icon: icon,
                             member: G.authenticated,
                             bs: bs,
                         });
-                        sendPeerUpdate();
+                        // sendPeerUpdate();
                     }, 500)
                 } else {
                     handleFileConnection(conn);
@@ -325,7 +317,8 @@
     }
 
     /**
-     * @param peerID
+     * @memberOf G.p2p
+     * @param {string} peerID
      * @returns {Promise<any>}
      */
     function connectTo(peerID) {
@@ -338,12 +331,13 @@
             con.on('open', function() {
                 addPeer(peerID, "", "", "", con);
                 connectedChatPeers[con.peer] = con;
-                handleChatConnection(con);
-                resolve();
+                handleChatConnection(con, () => {
+                    resolve();
+                });
 
                 let conFile = peer.connect(peerID, fileConf);
                 conFile.on('open', function() {
-                    handleFileConnection(conFile);
+                    handleFileConnection(conFile );
                 });
                 conFile.on('error', function(err) {
                     console.log(err);
@@ -354,7 +348,18 @@
             });
         });
     }
-    function handleChatConnection(conn) {
+    G.p2p.connectTo = connectTo;
+
+    /**
+     * @memberOf G.p2p
+     * @param peerID
+     * @returns {boolean}
+     */
+    function isConnected(peerID) {
+        return (peers.hasOwnProperty(peerID) && peers[peerID].chatConn.open);
+    }
+    G.p2p.isConnected = isConnected;
+    function handleChatConnection(conn, fn) {
         let peer = peers[conn.peer];
         conn.on('data', function(data) {
             switch (data.com) {
@@ -378,7 +383,8 @@
                     peers[conn.peer].icon = data.icon;
                     peers[conn.peer].member = data.member;
                     peers[conn.peer].bs = data.bs;
-                    sendPeerUpdate();
+                    // sendPeerUpdate();
+                    fn();
                     updatePeerList();
                     break;
                 default:
@@ -399,13 +405,13 @@
     }
     function handleFileConnection(conn) {
         connectedFilePeers[conn.peer] = conn;
+        peers[conn.peer].fileConn = conn;
         // Receive messages
         let fileMeta;
         conn.on('data', function(data) {
             // If we're getting a file, create a URL for it.
             if (data.constructor === ArrayBuffer) {
                 if (!fileMeta) return;//@todo error
-                console.log(fileMeta);
                 let dataView = new Uint8Array(data);
                 let dataBlob = new Blob([dataView]);
                 let url = window.URL.createObjectURL(dataBlob);
@@ -536,6 +542,11 @@
     }
     G.p2p.getPeer = getPeer;
 
+    /**
+     * @memberOf G.p2p
+     * @param {string} type
+     * @param {any} data
+     */
     function socketSend(type, data) {
         peer.socket._socket.send(JSON.stringify({
             type: type,
@@ -555,13 +566,28 @@
             }
         }
     }
+
+    /**
+     * @memberOf G.p2p
+     * @param {broadcast_callback} fn
+     */
     function broadcast(fn) {
         for (let peerID in connectedChatPeers) {
             if (connectedChatPeers.hasOwnProperty(peerID)) {
-                fn(connectedChatPeers[peerID], connectedFilePeers[peerID]);
+                fn(connectedChatPeers[peerID], connectedFilePeers[peerID], peers[peerID]);
             }
         }
     }
+    /**
+     * @callback broadcast_callback
+     * @param {DataConnection} chatPeer
+     * @param {DataConnection} filePeer
+     * @param {Peer} filePeer
+     */
+    function broadcast_callback(chatPeer, filePeer) {
+
+    };
+    G.p2p.broadcast = broadcast;
     /*endregion*/
 
     /*region ui*/
@@ -626,75 +652,46 @@
     /*endregion*/
 
     /*region chat */
-    function sendChatMsg(msg) {
-        console.log(G.friends.selected());
-        let targets = G.friends.selected();
-        if (targets.length < 1) {
-            eachActiveChatConnection(function (c) {
-                if (c.label === 'chat') {
-                    c.send({
-                        com: "chat",
-                        msg: msg
-                    });
-                }
-            });
-            write(peer, msg);
-        } else {
-            //send to selected friends
-            for (let i = 0; i < targets.length; i++) {
-                let target = targets[i];
-                if (target.online) {
-                    //send
-                    sendToPeer(target.peerID, {
-                        com: "chat",
-                        msg: msg
-                    });
-                }
-            }
-        }
 
-        $('#text').val('');
-        $('#text').focus();
+    function sendChatMsg(msg) {
+        G.p2p.broadcast(function (c) {
+            c.send({
+                com: "chat",
+                msg: msg
+            });
+        });
+        G.chat.write(peer, msg);
+        $('#text')
+            .val('')
+            .focus();
     }
-    function sendCode(language, code, id = false) {
+    function sendCode(language, code) {
         let codeId = G.codeHistory.push({
             code: code,
             language: language
         });
-        if (!id) {
-            eachActiveChatConnection(function(c) {
-                if (c.label === 'chat') {
-                    c.send({
-                        com: "code",
-                        code: code,
-                        language: language
-                    });
-                    writeWidget("code", `<span>CODE: ${language}</span>`)
-                        .data("id", codeId);
-                }
+        G.p2p.broadcast(function(c) {
+            c.send({
+                com: "code",
+                code: code,
+                language: language
             });
-        } else {
-            //@todo send to this one
-        }
+        });
+        writeWidget("code", `<span>CODE: ${language}</span>`)
+            .data("id", codeId);
     }
     function sendFile(file, id = false) {
-        if (!id) {
-            eachActiveChatConnection(function (conn, fileConn) {
-                if (fileConn.label === 'file') {
-                    fileConn.send(JSON.stringify({
-                        lastModified: file.lastModified,
-                        lastModifiedDate: file.lastModifiedDate,
-                        name: file.name,
-                        size: file.size,
-                        type: file.type,
-                    }));
-                    fileConn.send(file);
-                    writeWidget("file-send", `<span>FILE SEND</span>`);
-                }
-            });
-        } else {
-            //@todo send to this one
-        }
+        G.p2p.broadcast(function (conn, fileConn) {
+            fileConn.send(JSON.stringify({
+                lastModified: file.lastModified,
+                lastModifiedDate: file.lastModifiedDate,
+                name: file.name,
+                size: file.size,
+                type: file.type,
+            }));
+            fileConn.send(file);
+        });
+        writeWidget("file-send", `<span>FILE SEND</span>`);
     }
     /**
      * @memberOf G.chat
@@ -724,9 +721,11 @@
         return $element;
     }
     G.chat.writeWidget = writeWidget;
+
     /*endregion*/
 
     /*region utils */
+
     function humanFileSize(bytes, si) {
         var thresh = si ? 1000 : 1024;
         if(Math.abs(bytes) < thresh) {
@@ -802,6 +801,16 @@
         let rgb = hslToRgb(hue, 0.9, 0.9);
         return rgbToHex(rgb);
     }
+    function guid() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                .toString(16)
+                .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+            s4() + '-' + s4() + s4() + s4();
+    }
+
     /*endregion*/
 
     function setColor(hexCode) {
@@ -845,15 +854,35 @@
     }
     G.audio.loadSound = loadSound;
 
-    function playSound(name) {
+    let runningSound = [];
+    /**
+     * play a sound file
+     * @param {string} name Audio file name
+     * @param {boolean} loop If sound should loop
+     */
+    function playSound(name, loop = false) {
         if (!sounds.has(name)) throw new Error("sound not found!");
         let buffer = sounds.get(name).buffer;
         let source = audioContext.createBufferSource();
         source.buffer = buffer;
         source.connect(mainGain);
+        source.loop = loop;
         source.start(0);
+        return runningSound.push(source) -1;
     }
     G.audio.playSound = playSound;
+
+    /**
+     * stop sound
+     * @param {int} id The id from playSound return
+     */
+    function stopSound(id) {
+        if (runningSound[id]) {
+            runningSound[id].stop();
+            runningSound[id] = null;
+        }
+    }
+    G.audio.stopSound = stopSound;
 
     function addAudioChannel(name) {
         if (channels.hasOwnProperty(name)) {
@@ -918,6 +947,9 @@
         doDraw();
     }
 
+    loadSound("message", "/sounds/Message.wav");
+    loadSound("ringIn", "/sounds/RingIn.wav");
+
     //trash
     G.audio.connect = function(stream) {
         // let captureStream = $audioOut[0].captureStream(stream);
@@ -931,7 +963,6 @@
         // outputTracks = outputTracks.concat(outputVideoStream.getTracks());
         // outputMediaStream = new MediaStream(outputTracks);
     };
-    loadSound("message", "/sounds/Message.wav");
 
     /*endregion audio*/
 
@@ -1018,15 +1049,6 @@
     }
     /*endregion*/
 
-    function guid() {
-        function s4() {
-            return Math.floor((1 + Math.random()) * 0x10000)
-                .toString(16)
-                .substring(1);
-        }
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-            s4() + '-' + s4() + s4() + s4();
-    }
     function templateFactory(snip, ...vars) {
         function Template(argsObj) {
             let result = "";
@@ -1112,6 +1134,7 @@
         let $loginForm = $(".login .login-form", G.$chatBox);
         let $registerForm = $(".login .register-form", G.$chatBox);
         let $guestLoginForm = $(".login .guest-login-form", G.$chatBox);
+        let $msgBox = $(".login .box .message-box", G.$chatBox);
         let aniOpt = {
             duration: 1000,
             easing: "easeInOutCirc",
@@ -1124,10 +1147,12 @@
             url: "/howiam",
             type: "GET",
             dataType: 'json',
-        }).then((res) => {
+        })
+            .then((res) => {
             if (res.code === 1) {
                 //set user
                 G.user = res.payload;
+                console.log(res)
                 G.authenticated = true;
                 // setColor(user.color);
                 let bs = localStorage.getItem("browserSecret");
@@ -1163,7 +1188,6 @@
         $(".login .go-to-guest-login", G.$chatBox).click(function (e) {
             //show guest login
             $guestLoginForm.show();
-            $(".peer-nickname", $guestLoginForm).focus();
             $registerForm.animate({
                 left: "-400px",
             }, aniOpt);
@@ -1175,6 +1199,7 @@
             }, aniOpt);
             Promise.all([$guestLoginForm.promise(), $loginForm.promise(), $registerForm.promise()]).then(() => {
                 //set focus
+                $(".peer-nickname", $guestLoginForm).focus();
                 $registerForm.hide();
                 $loginForm.hide();
             });
@@ -1182,7 +1207,6 @@
         $(".login .go-to-register", G.$chatBox).click(function (e) {
             //show guest login
             $registerForm.show();
-            $('input[name="name"]', $registerForm).focus();
             $registerForm.animate({
                 left: "0px",
             }, aniOpt);
@@ -1194,6 +1218,7 @@
             }, aniOpt);
             Promise.all([$guestLoginForm.promise(), $loginForm.promise(), $registerForm.promise()]).then(() => {
                 //set focus
+                $('input[name="name"]', $registerForm).focus();
                 $loginForm.hide();
                 $guestLoginForm.hide();
             });
@@ -1201,7 +1226,6 @@
         $(".login .go-to-login", G.$chatBox).click(function (e) {
             //show login
             $loginForm.show();
-            $('input[name="name"]', $loginForm).focus();
             $registerForm.animate({
                 left: "-200px",
             }, aniOpt);
@@ -1213,6 +1237,7 @@
             }, aniOpt);
             Promise.all([$guestLoginForm.promise(), $loginForm.promise(), $registerForm.promise()]).then(() => {
                 //set focus
+                $('input[name="name"]', $loginForm).focus();
                 $registerForm.hide();
                 $guestLoginForm.hide();
             });
@@ -1235,7 +1260,16 @@
                 $(".login .box", G.$chatBox)
                     .css("opacity", 0)
                     .removeClass("loading");
+                $(".login .message-box", G.$chatBox).hide();
             });
+        }
+        function showLoginMessage(title, msg, error = false) {
+            $(".login .box", G.$chatBox).removeClass("loading");
+            if (error) { $msgBox.addClass("error"); }
+            else { $msgBox.removeClass("error"); }
+            $(".title", $msgBox).html(title.toUpperCase());
+            $(".message", $msgBox).html(msg);
+            $msgBox.show();
         }
         function myRenderFunction(option) {
             return `<i class="fa fa-${option.value}"></i><span></span>`;
@@ -1282,11 +1316,22 @@
                     G.authenticated = true;
                     // setColor(user.color);
                     startP2P(G.user.name, G.user.color, G.user.icon).then(() => {
-                        hideLogin();
+                        setTimeout(function() {
+                            showLoginMessage("Welcome back", G.user.name);
+                        }, 1000);
+                        setTimeout(function() {
+                            hideLogin();
+                        }, 2000);
                     }, (err) => {
-                        console.log("//@todo handle connection error");
-                        throw err;
+                        showLoginMessage(err.type, err.message, true);
                     });
+                } else if (res.code === 2){
+                    setTimeout(() => {
+                        showLoginMessage("", res.msg);
+                        setTimeout(() => {
+                            $msgBox.hide();
+                        }, 1000);
+                    }, 1000);
                 }
             }, (err) => { throw err });
         });
@@ -1421,6 +1466,11 @@
         history.push = (e) => {
             return oPush.call(history, e)-1;
         };
+
+        /**
+         * @namespace G
+         * @property {object} codeHistory
+         */
         G.codeHistory = history;
 
         let $codeView = $('<div class="code-view" style="min-width: 200px; height: 90px;"></div>');
@@ -1509,9 +1559,10 @@
             //     </svg>`
         };
         this.onCommand = (com, target, msg) => {
+            //@todo play callOut sound in loop
             G.chat.writeWidget("call", `<span>CALLING ${target}</span>`);
             call(target).then(() => {
-                console.log("nice")
+                //@todo stop callOut sound
             });
         };
         this.openFile = (file) => {
@@ -1520,6 +1571,8 @@
         this.onPeerStart = (peer, peerID) => {
             peer.on('call', function(call) {
                 let incomingPeer = getPeer(call.peer);
+                //if in call -> reject
+                let ringId = G.audio.playSound("ringIn");
                 G.UI.setColorRing(incomingPeer.color);
                 let audioChannel = G.audio.addAudioChannel("callin_" + call.peer);
                 call.on('stream', function(stream) {
@@ -1541,6 +1594,7 @@
                         $(".reject-call", $ele).off("click", rejectCall);
                     });
                 }).then(() => {
+                    G.audio.stopSound(ringId);
                     let constraints = { audio: true, video: false };
                     navigator.mediaDevices.getUserMedia(constraints)
                         .then(function(stream) {
@@ -1553,6 +1607,7 @@
                             console.error(err);
                         });
                 }, (err) => {
+                    G.audio.stopSound(ringId);
                     call.close();
                 });
             });
