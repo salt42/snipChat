@@ -1,7 +1,5 @@
-// var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 80,
-//     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
-var port = process.env.OPENSHIFT_NODEJS_PORT ||  process.env.PORT || 80,
-    ip   = process.env.OPENSHIFT_NODEJS_IP,
+var port = process.env.PORT || 80,
+    ip   = process.env.IP || '0.0.0.0',
     dataPath = process.env.OPENSHIFT_DATA_DIR || __dirname + '/../';
     // mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
     // mongoURLLabel = "";

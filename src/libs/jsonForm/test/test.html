@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JsonForm Test</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="../src/jsonForm.js"></script>
+	<link href="../src/jsonForm.css" rel="stylesheet">
+	<script>
+		$(function() {
+		    var data = {
+                selectMe: "Not",
+			    primitives: {
+			        number: 12,
+				    string: "Test string",
+				    boolean: true,
+				    arrayOfNumbers: [42, 33, 11],
+                    arrayOfStrings: ["one", "two", "three"],
+				    arrayOfObjects: [
+					    {
+					        number: 815,
+                            string: "just text"
+					    },
+                        {
+                            number: 56789,
+                            string: "boring",
+                            youCantSelectMe: "Not",
+                        }
+				    ]
+			    },
+		    };
+
+		    var form = new jsonForm($("body")[0], data, {
+				meta: {
+				    selectMe: {
+                        type: "select",
+                        options: ["Not", "Yes"]
+                    },
+                    primitives: {
+                        arrayOfObjects: {
+                            youCantSelectMe: {
+                                type: "select",
+                                options: ["Not", "Yes"]
+                            }
+                        }
+                    }
+				}
+		    });
+		    console.log(form.getData());
+		});
+	</script>
+</head>
+<body>
+
+</body>
+</html>
