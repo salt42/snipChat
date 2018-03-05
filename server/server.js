@@ -1,11 +1,12 @@
 // var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 80,
 //     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
 var port = process.env.OPENSHIFT_NODEJS_PORT ||  process.env.PORT || 80,
-    ip   = process.env.OPENSHIFT_NODEJS_IP || process.env.IP || '0.0.0.0',
+    ip   = process.env.OPENSHIFT_NODEJS_IP,
     dataPath = process.env.OPENSHIFT_DATA_DIR || __dirname + '/../';
     // mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
     // mongoURLLabel = "";
-
+console.log('##############');
+console.log(ip, port);
 // let IP = (process.env.OPENSHIFT_BUILD_NAME) ? "0.0.0.0"|| 'localhost';
 
 let path = require('path');
