@@ -25,7 +25,9 @@ db.loadDatabase(function (err) {
 //init express
 let app = express();
 let ExpressPeerServer = require('./peerServer/index').ExpressPeerServer;
-let server = app.listen(port, ip);
+let server = app.listen(port, function() {
+    console.log("# Server started");
+});
 
 
 let friendRequests = [];
