@@ -110,7 +110,10 @@ app._configureWS = function (socket, key, id, token) {
     socket.on('message', function (data) {
         try {
             var message = JSON.parse(data);
-
+            if (message.type === "KEEP_ALIVE_PING") {
+                //@todo update session.lastActiveTime
+                return;
+            }
             if (['LEAVE', 'CANDIDATE', 'OFFER', 'ANSWER'].indexOf(message.type) !== -1) {
                 self._handleTransmission(key, {
                     type: message.type,

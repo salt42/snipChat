@@ -254,6 +254,7 @@
             peer.color = color;
             peer.icon = icon;
             peer.bs = bs;
+            let keepAliveInterval;
             peer.on('open', function(id) {
                 peerID = id;
                 fireEvent("onPeerStart", peer, peerID, nickname);
@@ -266,16 +267,9 @@
                     try {
                         let data = JSON.parse(event.data);
                         switch(data.type) {
-                            // case "FRIENDS":
-                            //     console.log(data);
-                            //     break;
-                            // case "FRIENDS_UPDATE":
-                            //     console.log(data);
-                            //     break;
                             default:
                                 if (socketListeners.hasOwnProperty(data.type) ) {
                                     for (let i = 0; i < socketListeners[data.type].length; i++) {
-                                        let obj = socketListeners[data.type][i];
                                         socketListeners[data.type][i](data.payload);
                                     }
                                 }
@@ -288,6 +282,12 @@
                     // self.emit('message', data);
                     realOnMessage(event);
                 };
+                keepAliveInterval = setInterval(() => {
+                    peer.socket._socket.send(JSON.stringify({
+                        type: "KEEP_ALIVE_PING",
+                        payload: ""
+                    }));
+                }, 5000);
             });
             peer.on('error', function(err) {
                 reject(err);
