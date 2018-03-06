@@ -1,10 +1,9 @@
-var port = process.env.PORT || 8080,
+var port = process.env.PORT || 80,
     ip   = process.env.IP || '0.0.0.0',
     dataPath = process.env.OPENSHIFT_DATA_DIR || __dirname + '/../';
     // mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
     // mongoURLLabel = "";
-console.log('##############');
-console.log(ip, port);
+
 // let IP = (process.env.OPENSHIFT_BUILD_NAME) ? "0.0.0.0"|| 'localhost';
 
 let path = require('path');
