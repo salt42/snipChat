@@ -158,6 +158,7 @@
     let peer,
         peerID,
         peerNick = "",
+        wsPort = 80,
         $chatBox = $("#chatBox"),
         $peerInfo = $("#chatBox .connection .peer-info"),
         $peerID = $("#chatBox .connection .peer-id"),
@@ -248,7 +249,7 @@
             chatConf.metadata.icon = icon;
             chatConf.metadata.bs = bs;
             peerNick = nickname;
-            peer = new Peer({host: window.location.hostname, port: 80, path: '/turn'});//{key: 'znx52etk7is8m2t9'});
+            peer = new Peer({host: window.location.hostname, port: wsPort, path: '/turn'});//{key: 'znx52etk7is8m2t9'});
             peer.nickname = nickname;
             peer.color = color;
             peer.icon = icon;
@@ -1148,7 +1149,8 @@
             type: "GET",
             dataType: 'json',
         })
-            .then((res) => {
+        .then((res) => {
+            wsPort = res.port;
             if (res.code === 1) {
                 //set user
                 G.user = res.payload;

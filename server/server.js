@@ -386,11 +386,13 @@ app.get("/howiam", function(req, res, next) {
             code: 1,
             msg: "logged in",
             payload: createResponseUser(req.session.user),
+            port: port,
         });
     } else {
         res.json({
             code: 2,
-            msg: "not logged in"
+            msg: "not logged in",
+            port: port,
         });
     }
 });
