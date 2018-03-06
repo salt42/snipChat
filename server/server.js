@@ -310,6 +310,10 @@ app.get('/', function(req, res, next) {
     // res.send(port +" :: "+ ip +" :: "+ dataPath);
     res.sendFile(path.join(__dirname + '/../src/chat.html'));
 });
+app.get('/port', function(req, res, next) {
+    // res.send(port +" :: "+ ip +" :: "+ dataPath);
+    res.json({port: port});
+});
 app.post('/register', function (req, res, next) {
     //@todo validate
     let username    = req.body.name;
