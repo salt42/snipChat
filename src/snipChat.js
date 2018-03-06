@@ -249,7 +249,7 @@
             chatConf.metadata.icon = icon;
             chatConf.metadata.bs = bs;
             peerNick = nickname;
-            peer = new Peer({host: window.location.hostname, port: wsPort, path: '/turn'});//{key: 'znx52etk7is8m2t9'});
+            peer = new Peer({host: window.location.hostname, path: '/turn'});//{key: 'znx52etk7is8m2t9'});
             peer.nickname = nickname;
             peer.color = color;
             peer.icon = icon;
