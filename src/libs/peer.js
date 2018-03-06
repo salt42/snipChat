@@ -831,8 +831,9 @@ Peer.prototype._retrieveId = function(cb) {
   var self = this;
   var http = new XMLHttpRequest();
   var protocol = this.options.secure ? 'https://' : 'http://';
-  var url = protocol + this.options.host + ':' + this.options.port +
-    this.options.path + this.options.key + '/id';
+  var url = protocol + this.options.host + this.options.path + this.options.key + '/id';
+  // var url = protocol + this.options.host + ':' + this.options.port +
+  //   this.options.path + this.options.key + '/id';
   var queryString = '?ts=' + new Date().getTime() + '' + Math.random();
   url += queryString;
 
@@ -1213,8 +1214,10 @@ function Socket(secure, host, port, path, key) {
 
   var httpProtocol = secure ? 'https://' : 'http://';
   var wsProtocol = secure ? 'wss://' : 'ws://';
-    this._httpUrl = httpProtocol + host + ':' + port + path + key;
-    this._wsUrl = wsProtocol + host + ':' + port + path + 'peerjs?key=' + key;
+    // this._httpUrl = httpProtocol + host + ':' + port + path + key;
+    // this._wsUrl = wsProtocol + host + ':' + port + path + 'peerjs?key=' + key;
+    this._httpUrl = httpProtocol + host + path + key;
+    this._wsUrl = wsProtocol + host + path + 'peerjs?key=' + key;
 }
 
 util.inherits(Socket, EventEmitter);
