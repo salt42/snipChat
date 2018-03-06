@@ -25,7 +25,7 @@ db.loadDatabase(function (err) {
 let app = express();
 let ExpressPeerServer = require('./peerServer/index').ExpressPeerServer;
 let server = app.listen(port, function() {
-    console.log("# Server started");
+    console.log("# Server started at port " + port);
 });
 
 
